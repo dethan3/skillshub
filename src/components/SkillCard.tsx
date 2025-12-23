@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Star, Clock, ExternalLink, Eye } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,9 +12,11 @@ interface SkillCardProps {
 }
 
 export function SkillCard({ skill, showQuickView = true }: SkillCardProps) {
+  const { t, i18n } = useTranslation();
+  
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    return date.toLocaleDateString(i18n.language === "zh" ? "zh-CN" : "en-US", { month: "short", day: "numeric", year: "numeric" });
   };
 
   return (
@@ -74,7 +77,7 @@ export function SkillCard({ skill, showQuickView = true }: SkillCardProps) {
           <Button variant="ghost" size="sm" asChild className="h-7 px-2">
             <Link to={`/skill/${skill.id}`}>
               <Eye className="h-3 w-3 mr-1" />
-              View
+              {t("skillCard.view")}
             </Link>
           </Button>
         )}

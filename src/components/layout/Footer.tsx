@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Github, ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const ecosystemLinks = [
   { label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
@@ -9,14 +10,16 @@ const ecosystemLinks = [
   { label: "openai/skills", url: "https://github.com/openai/skills" },
 ];
 
-const siteLinks = [
-  { label: "Library", href: "/library" },
-  { label: "Collections", href: "/collections" },
-  { label: "Submit a Skill", href: "/submit" },
-  { label: "About & Spec", href: "/about" },
-];
-
 export function Footer() {
+  const { t } = useTranslation();
+
+  const siteLinks = [
+    { label: t("common.library"), href: "/library" },
+    { label: t("common.collections"), href: "/collections" },
+    { label: t("common.submitSkill"), href: "/submit" },
+    { label: t("common.about"), href: "/about" },
+  ];
+
   return (
     <footer className="border-t border-[hsl(var(--border))] bg-[hsl(var(--background))]">
       <div className="container mx-auto px-4 md:px-6 py-12">
@@ -29,12 +32,11 @@ export function Footer() {
               <span className="text-xl font-bold">SkillsHub</span>
             </Link>
             <p className="text-sm text-[hsl(var(--muted-foreground))] max-w-md mb-4">
-              A community-driven directory for discovering, sharing, and deploying Agent Skills 
-              following the open SKILL.md standard. Not an official Anthropic product.
+              {t("footer.description")}
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://github.com/anthropics/skills"
+                href="https://github.com/dethan3/skillshub"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors"
@@ -45,7 +47,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Site</h3>
+            <h3 className="font-semibold mb-4">{t("footer.site")}</h3>
             <ul className="space-y-2">
               {siteLinks.map((link) => (
                 <li key={link.href}>
@@ -61,7 +63,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Ecosystem</h3>
+            <h3 className="font-semibold mb-4">{t("footer.ecosystem")}</h3>
             <ul className="space-y-2">
               {ecosystemLinks.map((link) => (
                 <li key={link.url}>
@@ -82,8 +84,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-[hsl(var(--border))]">
           <p className="text-sm text-[hsl(var(--muted-foreground))] text-center">
-            © {new Date().getFullYear()} SkillsHub. This is a community project showcasing the SKILL.md open standard.
-            Not affiliated with Anthropic, OpenAI, or any specific AI provider.
+            {t("footer.copyright", { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

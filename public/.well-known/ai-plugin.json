@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "SkillsHub",
+  "name_for_model": "skillshub",
+  "description_for_human": "Discover and share AI Agent Skills following the open SKILL.md standard. Find skills for Claude, ChatGPT, and other AI assistants.",
+  "description_for_model": "SkillsHub is a directory for AI Agent Skills. Use this to find reusable AI capabilities, browse skills by category (Development, Docs, Enterprise, Design, Automation, Data), explore curated collections for common workflows, and learn about the SKILL.md specification. Skills work with Claude, ChatGPT, and other AI assistants.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://skillshub.dev/openapi.yaml"
+  },
+  "logo_url": "https://skillshub.dev/logo.png",
+  "contact_email": "contact@skillshub.dev",
+  "legal_info_url": "https://skillshub.dev/about"
+}

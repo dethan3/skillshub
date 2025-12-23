@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, FileText, Code, Zap, Users, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -32,32 +34,36 @@ const ecosystemLinks = [
 ];
 
 export function About() {
+  const { t } = useTranslation();
+
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
+      <SEO
+        title={t("seo.aboutTitle")}
+        description={t("seo.aboutDescription")}
+        url="https://skillshub.dev/about"
+      />
       {/* Hero */}
       <div className="max-w-3xl mx-auto text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">About SkillsHub</h1>
+        <h1 className="text-4xl font-bold mb-4">{t("about.title")}</h1>
         <p className="text-lg text-[hsl(var(--muted-foreground))]">
-          A community-driven directory for discovering, sharing, and deploying Agent Skills
-          following the open SKILL.md standard.
+          {t("about.description")}
         </p>
       </div>
 
       {/* What are Skills */}
       <section className="max-w-4xl mx-auto mb-16">
-        <h2 className="text-2xl font-bold mb-6">What are Agent Skills?</h2>
+        <h2 className="text-2xl font-bold mb-6">{t("about.whatAreSkills")}</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
               <div className="w-10 h-10 rounded-lg bg-[hsl(var(--muted))] flex items-center justify-center mb-2">
                 <FileText className="h-5 w-5" />
               </div>
-              <CardTitle>Modular Capabilities</CardTitle>
+              <CardTitle>{t("about.modularCapabilities")}</CardTitle>
             </CardHeader>
             <CardContent className="text-[hsl(var(--muted-foreground))]">
-              Skills are reusable, self-contained capabilities that AI assistants can use to 
-              accomplish specific tasks. Each skill is a folder containing a <code className="text-xs px-1 py-0.5 bg-[hsl(var(--muted))] rounded">SKILL.md</code> file 
-              and any supporting resources.
+              {t("about.modularCapabilitiesDesc")}
             </CardContent>
           </Card>
 
@@ -66,12 +72,10 @@ export function About() {
               <div className="w-10 h-10 rounded-lg bg-[hsl(var(--muted))] flex items-center justify-center mb-2">
                 <Zap className="h-5 w-5" />
               </div>
-              <CardTitle>Model-Invoked</CardTitle>
+              <CardTitle>{t("about.modelInvoked")}</CardTitle>
             </CardHeader>
             <CardContent className="text-[hsl(var(--muted-foreground))]">
-              Skills are automatically activated based on context. The AI reads the skill's 
-              description and determines when it's relevant to invoke, making skills feel 
-              like natural extensions of the AI's capabilities.
+              {t("about.modelInvokedDesc")}
             </CardContent>
           </Card>
 
@@ -80,12 +84,10 @@ export function About() {
               <div className="w-10 h-10 rounded-lg bg-[hsl(var(--muted))] flex items-center justify-center mb-2">
                 <Code className="h-5 w-5" />
               </div>
-              <CardTitle>Open Standard</CardTitle>
+              <CardTitle>{t("about.openStandard")}</CardTitle>
             </CardHeader>
             <CardContent className="text-[hsl(var(--muted-foreground))]">
-              The SKILL.md specification is designed to be platform-agnostic, allowing skills 
-              to work across different AI assistants including Claude, ChatGPT, and others 
-              that adopt the standard.
+              {t("about.openStandardDesc")}
             </CardContent>
           </Card>
 
@@ -94,11 +96,10 @@ export function About() {
               <div className="w-10 h-10 rounded-lg bg-[hsl(var(--muted))] flex items-center justify-center mb-2">
                 <Users className="h-5 w-5" />
               </div>
-              <CardTitle>Community-Driven</CardTitle>
+              <CardTitle>{t("about.communityDriven")}</CardTitle>
             </CardHeader>
             <CardContent className="text-[hsl(var(--muted-foreground))]">
-              Skills can be shared, forked, and improved by the community. This collaborative 
-              ecosystem enables rapid development of new capabilities and best practices.
+              {t("about.communityDrivenDesc")}
             </CardContent>
           </Card>
         </div>
@@ -106,7 +107,7 @@ export function About() {
 
       {/* SKILL.md Specification */}
       <section className="max-w-4xl mx-auto mb-16">
-        <h2 className="text-2xl font-bold mb-6">SKILL.md Specification</h2>
+        <h2 className="text-2xl font-bold mb-6">{t("about.skillmdSpec")}</h2>
         <Card>
           <CardContent className="p-6">
             <p className="text-[hsl(var(--muted-foreground))] mb-6">
@@ -154,7 +155,7 @@ Provide examples of the skill in action...`}</pre>
 
       {/* Installation */}
       <section className="max-w-4xl mx-auto mb-16">
-        <h2 className="text-2xl font-bold mb-6">Installing Skills</h2>
+        <h2 className="text-2xl font-bold mb-6">{t("about.installingSkills")}</h2>
         <Card>
           <CardContent className="p-6 space-y-6">
             <div>
@@ -187,7 +188,7 @@ Provide examples of the skill in action...`}</pre>
 
       {/* Ecosystem */}
       <section className="max-w-4xl mx-auto mb-16">
-        <h2 className="text-2xl font-bold mb-6">Ecosystem & Resources</h2>
+        <h2 className="text-2xl font-bold mb-6">{t("about.ecosystem")}</h2>
         <div className="grid gap-4">
           {ecosystemLinks.map((link) => (
             <a
@@ -219,19 +220,19 @@ Provide examples of the skill in action...`}</pre>
       <section className="max-w-2xl mx-auto text-center">
         <Card className="bg-[hsl(var(--muted))]/30">
           <CardContent className="p-8">
-            <h2 className="text-2xl font-bold mb-4">Ready to explore?</h2>
+            <h2 className="text-2xl font-bold mb-4">{t("about.readyToExplore")}</h2>
             <p className="text-[hsl(var(--muted-foreground))] mb-6">
-              Browse our curated collection of skills or submit your own to share with the community.
+              {t("about.readyToExploreDesc")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild>
                 <Link to="/library">
-                  Browse Skills
+                  {t("common.browseSkills")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button variant="outline" asChild>
-                <Link to="/submit">Submit a Skill</Link>
+                <Link to="/submit">{t("common.submitSkill")}</Link>
               </Button>
             </div>
           </CardContent>

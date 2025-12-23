@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layers, ArrowRight, FileText, GitBranch, Shield, Palette, Settings, Database, CheckCircle, Code } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { collections, getSkillsByIds } from "@/data/skills";
@@ -17,13 +19,19 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export function Collections() {
+  const { t } = useTranslation();
+
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
+      <SEO
+        title={t("seo.collectionsTitle")}
+        description={t("seo.collectionsDescription")}
+        url="https://skillshub.dev/collections"
+      />
       <div className="mb-12">
-        <h1 className="text-3xl font-bold mb-2">Curated Collections</h1>
+        <h1 className="text-3xl font-bold mb-2">{t("collections.title")}</h1>
         <p className="text-[hsl(var(--muted-foreground))] max-w-2xl">
-          Hand-picked skill bundles for common workflows. Each collection groups related skills
-          that work well together for specific use cases.
+          {t("collections.description")}
         </p>
       </div>
 
@@ -55,12 +63,12 @@ export function Collections() {
                         ))}
                         {skills.length > 3 && (
                           <Badge variant="outline" className="text-xs">
-                            +{skills.length - 3} more
+                            +{skills.length - 3} {t("common.more")}
                           </Badge>
                         )}
                       </div>
                       <div className="flex items-center gap-2 text-sm font-medium text-[hsl(var(--foreground))]">
-                        <span>{collection.skillIds.length} skills</span>
+                        <span>{collection.skillIds.length} {t("common.skills")}</span>
                         <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                       </div>
                     </div>

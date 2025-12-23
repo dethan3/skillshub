@@ -1,21 +1,35 @@
-# SkillsHub
+# SkillsHub - AI Agent Skills Directory
 
-A production-grade Skills library hosting website for discovering, sharing, and deploying Agent Skills following the open **SKILL.md** standard.
+> **Discover, Share, and Deploy AI Agent Skills** — A community-driven directory following the open [SKILL.md](https://github.com/anthropics/skills) standard for Claude, ChatGPT, and other AI assistants.
 
-![SkillsHub](https://img.shields.io/badge/Skills-40%2B-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
-![React](https://img.shields.io/badge/React-19-61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6)
+[![Skills](https://img.shields.io/badge/Skills-40%2B-blue)](https://skillshub.dev/library)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![React](https://img.shields.io/badge/React-19-61DAFB)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6)](https://www.typescriptlang.org)
+[![i18n](https://img.shields.io/badge/i18n-EN%20%7C%20中文-orange)](https://skillshub.dev)
 
-## Features
+## 🎯 What is SkillsHub?
 
-- **Browse & Search** — Explore 40+ curated skills with powerful filtering and search
-- **Curated Collections** — Hand-picked skill bundles for common workflows
-- **Skill Details** — Markdown rendering, installation instructions, and related skills
-- **Submit Skills** — Community contribution with local review queue
-- **Dark/Light Theme** — System-aware theme switching
-- **Responsive Design** — Mobile-first, works on all devices
-- **Global Search** — `⌘K` / `Ctrl+K` command palette for quick navigation
+SkillsHub is the central hub for **AI Agent Skills** — reusable, self-contained capabilities that AI assistants can use to accomplish specific tasks. Think of it as an "app store" for AI capabilities, but open and community-driven.
+
+### What are Agent Skills?
+
+Agent Skills are modular AI capabilities defined using the **SKILL.md** specification:
+- **Portable** — Work across different AI platforms (Claude, ChatGPT, etc.)
+- **Model-Invoked** — Automatically activated by AI based on context
+- **Composable** — Combine multiple skills for complex workflows
+- **Community-Driven** — Share, fork, and improve skills together
+
+## ✨ Features
+
+- **🔍 Browse & Search** — Explore 40+ curated skills with powerful filtering by category, platform, and tags
+- **📦 Curated Collections** — Hand-picked skill bundles for workflows (Git, Documentation, DevOps, etc.)
+- **📖 Skill Details** — Markdown rendering, installation instructions, and related skills
+- **📤 Submit Skills** — Community contribution with review queue
+- **🌙 Dark/Light Theme** — System-aware theme switching
+- **🌐 Internationalization** — English and Chinese language support
+- **⌨️ Global Search** — `⌘K` / `Ctrl+K` command palette for quick navigation
+- **📱 Responsive Design** — Mobile-first, works on all devices
 
 ## Tech Stack
 
@@ -113,7 +127,7 @@ This is a static site that can be deployed to any static hosting provider:
 - **Cloudflare Pages** — Connect your repo
 - **GitHub Pages** — Use GitHub Actions
 
-## Future Enhancements
+## 🔮 Future Enhancements
 
 - **GitHub Integration** — Fetch skills directly from GitHub repos
 - **Backend API** — Server-side skill submission and review
@@ -121,13 +135,40 @@ This is a static site that can be deployed to any static hosting provider:
 - **Rating System** — Community ratings and reviews
 - **CLI Tool** — Command-line skill installer
 
-## Ecosystem Links
+## 🌍 Ecosystem & Related Projects
 
-- [anthropics/skills](https://github.com/anthropics/skills) — Official Agent Skills repository
-- [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) — Community curated list
-- [SkillsHunt](https://skillshunt.io/) — Discover and generate Claude Skills
-- [SkillsMP](https://skillsmp.com/) — Skills marketplace
+| Project | Description |
+|---------|-------------|
+| [anthropics/skills](https://github.com/anthropics/skills) | Official Agent Skills repository with SKILL.md specification |
+| [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) | Community curated list of Claude skills |
+| [openai/skills](https://github.com/openai/skills) | OpenAI's skills repository for ChatGPT |
+| [SkillsHunt](https://skillshunt.io/) | Discover and generate Claude Skills |
+| [SkillsMP](https://skillsmp.com/) | Skills marketplace |
 
-## License
+## 🔍 SEO & AI Discoverability
 
-MIT License
+This project includes comprehensive SEO optimizations:
+- **Meta tags** — Title, description, keywords, Open Graph, Twitter Cards
+- **Structured data** — JSON-LD schema for search engines
+- **Sitemap** — XML sitemap for search engine indexing
+- **robots.txt** — Search engine crawling directives
+- **llms.txt** — AI-friendly content description for LLM crawlers
+- **ai-plugin.json** — OpenAI plugin manifest for AI discoverability
+
+## 📄 License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+1. Submit skills via the [Submit page](https://skillshub.dev/submit)
+2. Open issues for bugs or feature requests
+3. Submit pull requests for improvements
+
+---
+
+<p align="center">
+  <strong>SkillsHub</strong> — The open directory for AI Agent Skills<br>
+  <a href="https://skillshub.dev">Website</a> · <a href="https://skillshub.dev/library">Browse Skills</a> · <a href="https://skillshub.dev/submit">Submit a Skill</a>
+</p>

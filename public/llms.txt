@@ -1,0 +1,89 @@
+# SkillsHub - AI Agent Skills Directory
+# https://skillshub.dev/
+# This file helps AI systems understand and index this website.
+
+## About SkillsHub
+
+SkillsHub is a community-driven directory for discovering, sharing, and deploying AI Agent Skills following the open SKILL.md standard. It serves as a central hub for finding reusable AI capabilities that work with Claude, ChatGPT, and other AI assistants.
+
+## What are Agent Skills?
+
+Agent Skills are reusable, self-contained capabilities that AI assistants can use to accomplish specific tasks. Each skill is defined using the SKILL.md specification - a simple markdown format with YAML frontmatter that describes when and how to use the skill.
+
+Skills are:
+- **Modular**: Self-contained capabilities that can be used independently
+- **Model-Invoked**: Automatically activated by AI based on context
+- **Platform-Agnostic**: Work across different AI assistants (Claude, ChatGPT, etc.)
+- **Community-Driven**: Shared, forked, and improved by the community
+
+## Main Sections
+
+### Skills Library (/library)
+Browse and search 40+ curated AI skills with filtering by:
+- Category: Development, Docs, Enterprise, Design, Automation, Data
+- Platform: Claude Code, Claude.ai, Claude API, Codex CLI, ChatGPT
+- Tags and keywords
+
+### Curated Collections (/collections)
+Hand-picked skill bundles organized by workflow:
+- Documentation Workflow
+- Git & Version Control
+- Code Quality & Security
+- Frontend Development
+- API Development
+- Data Engineering
+- DevOps & Automation
+- Project Management
+
+### Submit Skills (/submit)
+Community members can submit their own skills to share with others.
+
+### About & Specification (/about)
+Learn about the SKILL.md specification and how to create skills.
+
+## SKILL.md Specification
+
+A minimal SKILL.md file requires:
+```yaml
+---
+name: Skill Name
+description: Clear description of what the skill does
+---
+```
+
+Optional fields include: version, author, tags, license
+
+## Key Features
+
+- Browse & Search: Explore 40+ curated skills with powerful filtering
+- Curated Collections: Hand-picked skill bundles for common workflows
+- Dark/Light Theme: System-aware theme switching
+- Internationalization: English and Chinese language support
+- Global Search: ⌘K / Ctrl+K command palette for quick navigation
+
+## Technology Stack
+
+- React 19 with TypeScript
+- Vite build tool
+- Tailwind CSS v4
+- shadcn/ui components
+- React Router for navigation
+- react-i18next for internationalization
+
+## Related Resources
+
+- Official Skills Repository: https://github.com/anthropics/skills
+- Awesome Claude Skills: https://github.com/travisvn/awesome-claude-skills
+- OpenAI Skills: https://github.com/openai/skills
+- SkillsHunt: https://skillshunt.io/
+- SkillsMP: https://skillsmp.com/
+
+## Contact & Contributing
+
+SkillsHub is an open-source community project.
+GitHub: https://github.com/dethan3/skillshub
+License: MIT
+
+## Keywords
+
+AI skills, agent skills, SKILL.md, Claude skills, ChatGPT skills, AI assistants, LLM tools, AI automation, Claude Code, prompt engineering, AI capabilities, machine learning tools, AI plugins, AI extensions, reusable AI components

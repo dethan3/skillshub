@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Search, SlidersHorizontal, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { SEO } from "@/components/SEO";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,16 +30,18 @@ import type { Category, Platform } from "@/data/types";
 
 const categories: Category[] = ["Development", "Docs", "Enterprise", "Design", "Data", "Automation", "Other"];
 const platforms: Platform[] = ["Claude Code", "Claude.ai", "Claude API", "Codex CLI", "ChatGPT"];
-const sortOptions = [
-  { value: "popular", label: "Most Popular" },
-  { value: "recent", label: "Recently Updated" },
-  { value: "az", label: "A–Z" },
-];
 
 export function Library() {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+
+  const sortOptions = [
+    { value: "popular", label: t("library.mostPopular") },
+    { value: "recent", label: t("library.recentlyUpdated") },
+    { value: "az", label: t("library.alphabetical") },
+  ];
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     searchParams.get("category")?.split(",").filter(Boolean) || []
   );
@@ -123,7 +127,7 @@ export function Library() {
   const FilterContent = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="font-medium mb-3">Categories</h3>
+        <h3 className="font-medium mb-3">{t("library.categories")}</h3>
         <div className="space-y-2">
           {categories.map((category) => (
             <div key={category} className="flex items-center space-x-2">
@@ -144,7 +148,7 @@ export function Library() {
       </div>
 
       <div>
-        <h3 className="font-medium mb-3">Platforms</h3>
+        <h3 className="font-medium mb-3">{t("library.platforms")}</h3>
         <div className="space-y-2">
           {platforms.map((platform) => (
             <div key={platform} className="flex items-center space-x-2">
@@ -167,7 +171,7 @@ export function Library() {
       {hasActiveFilters && (
         <Button variant="outline" size="sm" onClick={clearFilters} className="w-full">
           <X className="h-4 w-4 mr-2" />
-          Clear filters
+          {t("common.clearFilters")}
         </Button>
       )}
     </div>
@@ -175,10 +179,15 @@ export function Library() {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
+      <SEO
+        title={t("seo.libraryTitle")}
+        description={t("seo.libraryDescription")}
+        url="https://skillshub.dev/library"
+      />
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Skills Library</h1>
+        <h1 className="text-3xl font-bold mb-2">{t("library.title")}</h1>
         <p className="text-[hsl(var(--muted-foreground))]">
-          Browse and discover {skills.length}+ skills for your AI workflows
+          {t("library.description", { count: skills.length })}
         </p>
       </div>
 
@@ -187,7 +196,7 @@ export function Library() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--muted-foreground))]" />
           <Input
-            placeholder="Search skills..."
+            placeholder={t("library.searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -196,7 +205,7 @@ export function Library() {
         <div className="flex gap-2">
           <Select value={sortBy} onValueChange={setSortBy}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Sort by" />
+              <SelectValue placeholder={t("library.sortBy")} />
             </SelectTrigger>
             <SelectContent>
               {sortOptions.map((option) => (
@@ -215,7 +224,7 @@ export function Library() {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Filters</DialogTitle>
+                <DialogTitle>{t("library.filters")}</DialogTitle>
               </DialogHeader>
               <ScrollArea className="max-h-[60vh]">
                 <FilterContent />
@@ -272,16 +281,16 @@ export function Library() {
           ) : filteredSkills.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-[hsl(var(--muted-foreground))] mb-4">
-                No skills found matching your criteria
+                {t("library.noResults")}
               </p>
               <Button variant="outline" onClick={clearFilters}>
-                Clear filters
+                {t("common.clearFilters")}
               </Button>
             </div>
           ) : (
             <>
               <p className="text-sm text-[hsl(var(--muted-foreground))] mb-4">
-                Showing {filteredSkills.length} skill{filteredSkills.length !== 1 ? "s" : ""}
+                {t("library.showingResults", { count: filteredSkills.length })}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
                 {filteredSkills.map((skill) => (
