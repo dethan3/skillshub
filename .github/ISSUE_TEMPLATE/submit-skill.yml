@@ -1,0 +1,77 @@
+name: Submit a Skill
+description: Submit an AI coding skill to SkillsHub for review and inclusion.
+labels:
+  - skill-submission
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting a skill to SkillsHub! Please fill out the form below.
+
+  - type: input
+    id: repo_url
+    attributes:
+      label: Repository URL
+      description: GitHub repository URL containing the skill.md file
+      placeholder: https://github.com/username/repo
+    validations:
+      required: true
+
+  - type: input
+    id: skill_name
+    attributes:
+      label: Skill Name
+      description: A clear, descriptive name for your skill
+      placeholder: My Awesome Skill
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief description of what the skill does
+      placeholder: This skill helps with...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Select the most appropriate category
+      options:
+        - Development
+        - Docs
+        - Enterprise
+        - Design
+        - Data
+        - Automation
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: platforms
+    attributes:
+      label: Compatible Platforms
+      description: Select all platforms this skill is compatible with
+      options:
+        - label: Claude Code
+        - label: Claude.ai
+        - label: Claude API
+        - label: Codex CLI
+        - label: ChatGPT
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: Comma-separated tags for discoverability
+      placeholder: typescript, testing, automation
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        By submitting this skill, you confirm that you have the right to share it and that it follows the [skill.md specification](https://skillshub.dev/about).

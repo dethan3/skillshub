@@ -19,6 +19,7 @@ export function SkillDetail() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [readmeCopied, setReadmeCopied] = useState(false);
 
   const skill = useMemo(() => (id ? getSkillById(id) : undefined), [id]);
   const relatedSkills = useMemo(() => (skill ? getRelatedSkills(skill, 6) : []), [skill]);
@@ -42,6 +43,17 @@ export function SkillDetail() {
       description: "Install command has been copied.",
     });
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleReadmeCopy = async () => {
+    if (!skill?.skillMd) return;
+    await navigator.clipboard.writeText(skill.skillMd);
+    setReadmeCopied(true);
+    toast({
+      title: "Copied to clipboard",
+      description: "SKILL.md content has been copied.",
+    });
+    setTimeout(() => setReadmeCopied(false), 2000);
   };
 
   const formatDate = (dateString: string) => {
@@ -111,12 +123,12 @@ export function SkillDetail() {
               ))}
             </div>
             <div className="flex flex-wrap items-center gap-4 text-sm text-[hsl(var(--muted-foreground))]">
-              {skill.popularity?.stars && (
+              {skill.popularity?.stars ? (
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                   <span>{skill.popularity.stars.toLocaleString()} stars</span>
                 </div>
-              )}
+              ) : null}
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
                 <span>Updated {formatDate(skill.updatedAt)}</span>
@@ -161,13 +173,36 @@ export function SkillDetail() {
 
             <TabsContent value="readme">
               <Card>
-                <CardContent className="p-6 prose prose-neutral dark:prose-invert max-w-none">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    rehypePlugins={[rehypeSanitize, rehypeHighlight]}
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-lg">SKILL.md</CardTitle>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleReadmeCopy}
+                    className="h-8"
                   >
-                    {skill.skillMd}
-                  </ReactMarkdown>
+                    {readmeCopied ? (
+                      <>
+                        <Check className="h-3.5 w-3.5 mr-1.5" />
+                        Copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-3.5 w-3.5 mr-1.5" />
+                        Copy
+                      </>
+                    )}
+                  </Button>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="markdown-content">
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeSanitize, rehypeHighlight]}
+                    >
+                      {skill.skillMd}
+                    </ReactMarkdown>
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>

@@ -27,9 +27,9 @@ export function Footer() {
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[hsl(var(--primary))]">
-                <span className="text-sm font-bold text-[hsl(var(--primary-foreground))]">S</span>
+                <span className="text-sm font-bold text-[hsl(var(--primary-foreground))]">A</span>
               </div>
-              <span className="text-xl font-bold">SkillsHub</span>
+              <span className="text-xl font-bold">AgentSkills</span>
             </Link>
             <p className="text-sm text-[hsl(var(--muted-foreground))] max-w-md mb-4">
               {t("footer.description")}

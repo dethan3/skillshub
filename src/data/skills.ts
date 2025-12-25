@@ -2,1441 +2,591 @@ import type { Skill, Collection } from "./types";
 
 export const skills: Skill[] = [
   {
-    id: "git-commit-message",
-    name: "Git Commit Message Generator",
-    description: "Generate conventional, semantic commit messages from staged changes with context-aware formatting.",
+    id: "mcp-builder",
+    name: "MCP Builder",
+    description: "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools.",
     category: "Development",
-    tags: ["git", "commit", "automation", "conventional-commits"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2341, installs: 15000 },
-    updatedAt: "2025-12-15",
-    authors: ["Anthropic"],
-    version: "1.2.0",
-    license: "MIT",
-    files: ["generate.ts", "templates/commit.md"],
-    skillMd: `---
-name: Git Commit Message Generator
-description: Generate conventional, semantic commit messages from staged changes with context-aware formatting.
----
-
-# Git Commit Message Generator
-
-This skill analyzes your staged Git changes and generates meaningful, conventional commit messages.
-
-## Features
-
-- Follows Conventional Commits specification
-- Analyzes diff context for semantic meaning
-- Supports multiple commit types (feat, fix, docs, style, refactor, test, chore)
-- Generates breaking change notices when appropriate
-
-## Usage
-
-Simply stage your changes and ask Claude to generate a commit message:
-
-\`\`\`bash
-git add .
-# Then ask: "Generate a commit message for my staged changes"
-\`\`\`
-
-## Configuration
-
-You can customize the commit format by modifying the templates in the \`templates/\` directory.
-`
-  },
-  {
-    id: "code-review",
-    name: "Code Review Assistant",
-    description: "Comprehensive code review with security analysis, best practices, and actionable suggestions.",
-    category: "Development",
-    tags: ["review", "security", "best-practices", "quality"],
-    platforms: ["Claude Code", "Claude.ai", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 3120, installs: 22000 },
-    updatedAt: "2025-12-18",
-    authors: ["Anthropic"],
-    version: "2.0.1",
-    license: "MIT",
-    files: ["review.ts", "rules/security.yaml", "rules/style.yaml"],
-    skillMd: `---
-name: Code Review Assistant
-description: Comprehensive code review with security analysis, best practices, and actionable suggestions.
----
-
-# Code Review Assistant
-
-An intelligent code review skill that provides comprehensive feedback on your code.
-
-## Features
-
-- Security vulnerability detection
-- Performance optimization suggestions
-- Code style and consistency checks
-- Documentation coverage analysis
-- Test coverage recommendations
-
-## Usage
-
-Ask Claude to review your code:
-
-\`\`\`
-Review this file for security issues and best practices
-\`\`\`
-
-## Review Categories
-
-1. **Security** - SQL injection, XSS, authentication issues
-2. **Performance** - N+1 queries, memory leaks, inefficient algorithms
-3. **Maintainability** - Code duplication, complex functions, naming
-4. **Testing** - Coverage gaps, edge cases, mocking strategies
-`
-  },
-  {
-    id: "test-generator",
-    name: "Unit Test Generator",
-    description: "Automatically generate comprehensive unit tests with mocks, edge cases, and assertions.",
-    category: "Development",
-    tags: ["testing", "unit-tests", "jest", "vitest", "automation"],
-    platforms: ["Claude Code", "Codex CLI", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1890, installs: 12500 },
-    updatedAt: "2025-12-10",
-    authors: ["Anthropic"],
-    version: "1.5.0",
-    license: "MIT",
-    files: ["generator.ts", "templates/jest.ts", "templates/vitest.ts"],
-    skillMd: `---
-name: Unit Test Generator
-description: Automatically generate comprehensive unit tests with mocks, edge cases, and assertions.
----
-
-# Unit Test Generator
-
-Generate thorough unit tests for your functions and classes.
-
-## Supported Frameworks
-
-- Jest
-- Vitest
-- Mocha
-- pytest (Python)
-
-## Features
-
-- Automatic mock generation
-- Edge case identification
-- Assertion coverage
-- Setup/teardown boilerplate
-
-## Usage
-
-\`\`\`
-Generate unit tests for the UserService class
-\`\`\`
-`
-  },
-  {
-    id: "api-docs-generator",
-    name: "API Documentation Generator",
-    description: "Generate OpenAPI/Swagger documentation from code with examples and descriptions.",
-    category: "Docs",
-    tags: ["api", "openapi", "swagger", "documentation"],
-    platforms: ["Claude Code", "Claude.ai"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1456, installs: 8900 },
-    updatedAt: "2025-12-08",
-    authors: ["Anthropic"],
-    version: "1.1.0",
-    license: "MIT",
-    files: ["generate-docs.ts", "templates/openapi.yaml"],
-    skillMd: `---
-name: API Documentation Generator
-description: Generate OpenAPI/Swagger documentation from code with examples and descriptions.
----
-
-# API Documentation Generator
-
-Automatically generate comprehensive API documentation from your codebase.
-
-## Output Formats
-
-- OpenAPI 3.0
-- Swagger 2.0
-- Markdown
-- HTML
-
-## Features
-
-- Extracts endpoints from route definitions
-- Generates request/response schemas
-- Includes example payloads
-- Documents authentication requirements
-`
-  },
-  {
-    id: "readme-generator",
-    name: "README Generator",
-    description: "Create professional README files with badges, installation guides, and API references.",
-    category: "Docs",
-    tags: ["readme", "documentation", "markdown", "badges"],
-    platforms: ["Claude Code", "Claude.ai", "ChatGPT"],
-    source: { kind: "github", label: "travisvn/awesome-claude-skills", url: "https://github.com/travisvn/awesome-claude-skills" },
-    popularity: { stars: 987, installs: 6200 },
-    updatedAt: "2025-12-12",
-    authors: ["Travis VN"],
-    version: "1.0.0",
-    license: "MIT",
-    files: ["generate-readme.ts", "templates/readme.md"],
-    skillMd: `---
-name: README Generator
-description: Create professional README files with badges, installation guides, and API references.
----
-
-# README Generator
-
-Generate comprehensive README files for your projects.
-
-## Sections Generated
-
-- Project title and description
-- Badges (CI, coverage, npm version)
-- Installation instructions
-- Usage examples
-- API reference
-- Contributing guidelines
-- License information
-`
-  },
-  {
-    id: "changelog-generator",
-    name: "Changelog Generator",
-    description: "Generate changelogs from git history following Keep a Changelog format.",
-    category: "Docs",
-    tags: ["changelog", "git", "releases", "versioning"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 756, installs: 4500 },
-    updatedAt: "2025-12-05",
-    authors: ["Anthropic"],
-    version: "1.0.2",
-    license: "MIT",
-    files: ["changelog.ts"],
-    skillMd: `---
-name: Changelog Generator
-description: Generate changelogs from git history following Keep a Changelog format.
----
-
-# Changelog Generator
-
-Automatically generate changelogs from your git commit history.
-
-## Format
-
-Follows the Keep a Changelog specification with sections for:
-- Added
-- Changed
-- Deprecated
-- Removed
-- Fixed
-- Security
-`
-  },
-  {
-    id: "security-audit",
-    name: "Security Audit",
-    description: "Comprehensive security scanning for vulnerabilities, secrets, and compliance issues.",
-    category: "Enterprise",
-    tags: ["security", "audit", "compliance", "vulnerabilities"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2890, installs: 18000 },
+    tags: ["mcp", "api", "integration", "typescript", "python"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/mcp-builder" },
+    popularity: { stars: 0, installs: 0 },
     updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "2.1.0",
-    license: "MIT",
-    files: ["audit.ts", "rules/owasp.yaml", "rules/secrets.yaml"],
-    skillMd: `---
-name: Security Audit
-description: Comprehensive security scanning for vulnerabilities, secrets, and compliance issues.
----
-
-# Security Audit
-
-Enterprise-grade security scanning for your codebase.
-
-## Checks
-
-- OWASP Top 10 vulnerabilities
-- Secret detection (API keys, passwords)
-- Dependency vulnerabilities
-- SQL injection patterns
-- XSS vulnerabilities
-- Authentication issues
-- Authorization flaws
-
-## Compliance
-
-- SOC 2
-- HIPAA
-- GDPR
-- PCI DSS
-`
-  },
-  {
-    id: "license-compliance",
-    name: "License Compliance Checker",
-    description: "Scan dependencies for license compatibility and compliance requirements.",
-    category: "Enterprise",
-    tags: ["license", "compliance", "legal", "dependencies"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1234, installs: 7800 },
-    updatedAt: "2025-12-01",
-    authors: ["Anthropic"],
     version: "1.0.0",
     license: "MIT",
-    files: ["license-check.ts", "known-licenses.json"],
+    files: ["SKILL.md", "reference/"],
     skillMd: `---
-name: License Compliance Checker
-description: Scan dependencies for license compatibility and compliance requirements.
+name: mcp-builder
+description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
+license: Complete terms in LICENSE.txt
 ---
 
-# License Compliance Checker
+# MCP Server Development Guide
 
-Ensure your project's dependencies comply with your licensing requirements.
+## Overview
 
-## Features
+Create MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. The quality of an MCP server is measured by how well it enables LLMs to accomplish real-world tasks.
 
-- Scans all dependencies recursively
-- Identifies license types
-- Flags incompatible licenses
-- Generates compliance reports
+## Process
+
+### Phase 1: Deep Research and Planning
+- Understand Modern MCP Design
+- Study MCP Protocol Documentation
+- Study Framework Documentation
+- Plan Your Implementation
+
+### Phase 2: Implementation
+- Set Up Project Structure
+- Implement Core Infrastructure
+- Implement Tools
 `
   },
   {
-    id: "figma-to-code",
-    name: "Figma to Code",
-    description: "Convert Figma designs to React/Vue/HTML components with Tailwind CSS.",
+    id: "frontend-design",
+    name: "Frontend Design",
+    description: "Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code and UI design that avoids generic AI aesthetics.",
     category: "Design",
-    tags: ["figma", "react", "vue", "tailwind", "components"],
-    platforms: ["Claude.ai", "Claude API"],
-    source: { kind: "website", label: "skillshunt.io", url: "https://skillshunt.io" },
-    popularity: { stars: 3456, installs: 25000 },
-    updatedAt: "2025-12-19",
-    authors: ["SkillsHunt Team"],
-    version: "2.0.0",
-    license: "MIT",
-    files: ["converter.ts", "templates/react.tsx", "templates/vue.vue"],
-    skillMd: `---
-name: Figma to Code
-description: Convert Figma designs to React/Vue/HTML components with Tailwind CSS.
----
-
-# Figma to Code
-
-Transform your Figma designs into production-ready code.
-
-## Supported Outputs
-
-- React + Tailwind CSS
-- Vue 3 + Tailwind CSS
-- HTML + CSS
-- React Native
-
-## Features
-
-- Preserves design tokens
-- Generates responsive layouts
-- Extracts and optimizes assets
-- Creates component hierarchy
-`
-  },
-  {
-    id: "design-system-generator",
-    name: "Design System Generator",
-    description: "Generate a complete design system with tokens, components, and documentation.",
-    category: "Design",
-    tags: ["design-system", "tokens", "components", "storybook"],
+    tags: ["frontend", "ui", "react", "tailwind", "web"],
     platforms: ["Claude Code", "Claude.ai"],
-    source: { kind: "github", label: "travisvn/awesome-claude-skills", url: "https://github.com/travisvn/awesome-claude-skills" },
-    popularity: { stars: 1678, installs: 9500 },
-    updatedAt: "2025-12-14",
-    authors: ["Travis VN"],
-    version: "1.3.0",
-    license: "MIT",
-    files: ["generator.ts", "templates/tokens.json", "templates/components/"],
-    skillMd: `---
-name: Design System Generator
-description: Generate a complete design system with tokens, components, and documentation.
----
-
-# Design System Generator
-
-Create a comprehensive design system from scratch or existing designs.
-
-## Generated Assets
-
-- Design tokens (colors, typography, spacing)
-- Component library (React/Vue)
-- Storybook documentation
-- Figma token export
-`
-  },
-  {
-    id: "sql-query-builder",
-    name: "SQL Query Builder",
-    description: "Generate optimized SQL queries from natural language with explain plans.",
-    category: "Data",
-    tags: ["sql", "database", "query", "optimization"],
-    platforms: ["Claude Code", "Claude.ai", "ChatGPT"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2345, installs: 16000 },
-    updatedAt: "2025-12-17",
-    authors: ["Anthropic"],
-    version: "1.4.0",
-    license: "MIT",
-    files: ["query-builder.ts", "dialects/"],
-    skillMd: `---
-name: SQL Query Builder
-description: Generate optimized SQL queries from natural language with explain plans.
----
-
-# SQL Query Builder
-
-Convert natural language to optimized SQL queries.
-
-## Supported Databases
-
-- PostgreSQL
-- MySQL
-- SQLite
-- SQL Server
-- Oracle
-
-## Features
-
-- Query optimization suggestions
-- Index recommendations
-- Explain plan analysis
-- Query formatting
-`
-  },
-  {
-    id: "data-pipeline",
-    name: "Data Pipeline Generator",
-    description: "Create ETL pipelines with validation, transformation, and error handling.",
-    category: "Data",
-    tags: ["etl", "pipeline", "data-engineering", "validation"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1567, installs: 8900 },
-    updatedAt: "2025-12-11",
-    authors: ["Anthropic"],
-    version: "1.2.0",
-    license: "MIT",
-    files: ["pipeline.ts", "validators/", "transformers/"],
-    skillMd: `---
-name: Data Pipeline Generator
-description: Create ETL pipelines with validation, transformation, and error handling.
----
-
-# Data Pipeline Generator
-
-Generate robust data pipelines for your ETL workflows.
-
-## Features
-
-- Schema validation
-- Data transformation
-- Error handling and retry logic
-- Monitoring and alerting
-- Incremental processing
-`
-  },
-  {
-    id: "github-actions",
-    name: "GitHub Actions Generator",
-    description: "Generate CI/CD workflows for GitHub Actions with best practices.",
-    category: "Automation",
-    tags: ["ci-cd", "github-actions", "workflow", "automation"],
-    platforms: ["Claude Code", "Codex CLI", "ChatGPT"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2678, installs: 19000 },
-    updatedAt: "2025-12-16",
-    authors: ["Anthropic"],
-    version: "2.0.0",
-    license: "MIT",
-    files: ["generator.ts", "templates/"],
-    skillMd: `---
-name: GitHub Actions Generator
-description: Generate CI/CD workflows for GitHub Actions with best practices.
----
-
-# GitHub Actions Generator
-
-Create production-ready GitHub Actions workflows.
-
-## Workflow Types
-
-- Build and test
-- Deploy to cloud providers
-- Release automation
-- Security scanning
-- Documentation publishing
-
-## Best Practices
-
-- Caching strategies
-- Matrix builds
-- Secret management
-- Artifact handling
-`
-  },
-  {
-    id: "docker-compose",
-    name: "Docker Compose Generator",
-    description: "Generate Docker Compose files for multi-service applications.",
-    category: "Automation",
-    tags: ["docker", "containers", "devops", "orchestration"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "travisvn/awesome-claude-skills", url: "https://github.com/travisvn/awesome-claude-skills" },
-    popularity: { stars: 1890, installs: 11000 },
-    updatedAt: "2025-12-09",
-    authors: ["Travis VN"],
-    version: "1.1.0",
-    license: "MIT",
-    files: ["generator.ts", "templates/docker-compose.yaml"],
-    skillMd: `---
-name: Docker Compose Generator
-description: Generate Docker Compose files for multi-service applications.
----
-
-# Docker Compose Generator
-
-Create Docker Compose configurations for complex applications.
-
-## Features
-
-- Multi-service orchestration
-- Network configuration
-- Volume management
-- Environment variables
-- Health checks
-`
-  },
-  {
-    id: "terraform-generator",
-    name: "Terraform Generator",
-    description: "Generate Terraform configurations for cloud infrastructure.",
-    category: "Automation",
-    tags: ["terraform", "iac", "cloud", "aws", "gcp", "azure"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2123, installs: 14000 },
-    updatedAt: "2025-12-13",
-    authors: ["Anthropic"],
-    version: "1.5.0",
-    license: "MIT",
-    files: ["generator.ts", "modules/"],
-    skillMd: `---
-name: Terraform Generator
-description: Generate Terraform configurations for cloud infrastructure.
----
-
-# Terraform Generator
-
-Create infrastructure as code with Terraform.
-
-## Cloud Providers
-
-- AWS
-- Google Cloud
-- Azure
-- DigitalOcean
-
-## Resources
-
-- Compute instances
-- Networking (VPC, subnets)
-- Storage (S3, GCS)
-- Databases (RDS, Cloud SQL)
-- Kubernetes clusters
-`
-  },
-  {
-    id: "regex-builder",
-    name: "Regex Builder",
-    description: "Build and explain regular expressions with test cases and visualizations.",
-    category: "Development",
-    tags: ["regex", "patterns", "validation", "parsing"],
-    platforms: ["Claude Code", "Claude.ai", "ChatGPT"],
-    source: { kind: "website", label: "skillsmp.com", url: "https://skillsmp.com" },
-    popularity: { stars: 1456, installs: 9800 },
-    updatedAt: "2025-12-07",
-    authors: ["SkillsMP Team"],
-    version: "1.0.0",
-    license: "MIT",
-    files: ["builder.ts", "patterns/"],
-    skillMd: `---
-name: Regex Builder
-description: Build and explain regular expressions with test cases and visualizations.
----
-
-# Regex Builder
-
-Create and understand regular expressions easily.
-
-## Features
-
-- Natural language to regex conversion
-- Step-by-step explanations
-- Test case generation
-- Common pattern library
-- Visualization support
-`
-  },
-  {
-    id: "refactoring-assistant",
-    name: "Refactoring Assistant",
-    description: "Suggest and apply code refactoring patterns to improve code quality.",
-    category: "Development",
-    tags: ["refactoring", "clean-code", "patterns", "quality"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1789, installs: 10500 },
-    updatedAt: "2025-12-18",
-    authors: ["Anthropic"],
-    version: "1.3.0",
-    license: "MIT",
-    files: ["refactor.ts", "patterns/"],
-    skillMd: `---
-name: Refactoring Assistant
-description: Suggest and apply code refactoring patterns to improve code quality.
----
-
-# Refactoring Assistant
-
-Improve your code with automated refactoring suggestions.
-
-## Refactoring Types
-
-- Extract method/function
-- Rename variables
-- Simplify conditionals
-- Remove duplication
-- Improve abstractions
-`
-  },
-  {
-    id: "typescript-migration",
-    name: "TypeScript Migration",
-    description: "Migrate JavaScript projects to TypeScript with proper types and configurations.",
-    category: "Development",
-    tags: ["typescript", "migration", "types", "javascript"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2034, installs: 13500 },
-    updatedAt: "2025-12-15",
-    authors: ["Anthropic"],
-    version: "1.1.0",
-    license: "MIT",
-    files: ["migrate.ts", "templates/tsconfig.json"],
-    skillMd: `---
-name: TypeScript Migration
-description: Migrate JavaScript projects to TypeScript with proper types and configurations.
----
-
-# TypeScript Migration
-
-Convert your JavaScript codebase to TypeScript.
-
-## Features
-
-- Automatic type inference
-- Configuration generation
-- Gradual migration support
-- Type definition installation
-`
-  },
-  {
-    id: "api-client-generator",
-    name: "API Client Generator",
-    description: "Generate type-safe API clients from OpenAPI specifications.",
-    category: "Development",
-    tags: ["api", "client", "openapi", "codegen"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "travisvn/awesome-claude-skills", url: "https://github.com/travisvn/awesome-claude-skills" },
-    popularity: { stars: 1567, installs: 8700 },
-    updatedAt: "2025-12-10",
-    authors: ["Travis VN"],
-    version: "1.2.0",
-    license: "MIT",
-    files: ["generator.ts", "templates/"],
-    skillMd: `---
-name: API Client Generator
-description: Generate type-safe API clients from OpenAPI specifications.
----
-
-# API Client Generator
-
-Create API clients from OpenAPI/Swagger specs.
-
-## Output Languages
-
-- TypeScript
-- Python
-- Go
-- Rust
-
-## Features
-
-- Type-safe requests
-- Error handling
-- Authentication support
-- Request/response validation
-`
-  },
-  {
-    id: "database-schema",
-    name: "Database Schema Designer",
-    description: "Design and generate database schemas with migrations and relationships.",
-    category: "Data",
-    tags: ["database", "schema", "migrations", "sql"],
-    platforms: ["Claude Code", "Claude.ai"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1890, installs: 11200 },
-    updatedAt: "2025-12-14",
-    authors: ["Anthropic"],
-    version: "1.4.0",
-    license: "MIT",
-    files: ["designer.ts", "templates/"],
-    skillMd: `---
-name: Database Schema Designer
-description: Design and generate database schemas with migrations and relationships.
----
-
-# Database Schema Designer
-
-Design robust database schemas visually.
-
-## Features
-
-- Entity relationship modeling
-- Migration generation
-- Index optimization
-- Foreign key management
-- Normalization suggestions
-`
-  },
-  {
-    id: "graphql-schema",
-    name: "GraphQL Schema Generator",
-    description: "Generate GraphQL schemas with resolvers and type definitions.",
-    category: "Development",
-    tags: ["graphql", "api", "schema", "resolvers"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1345, installs: 7600 },
-    updatedAt: "2025-12-08",
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/frontend-design" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
     version: "1.0.0",
     license: "MIT",
-    files: ["generator.ts", "templates/schema.graphql"],
+    files: ["SKILL.md"],
     skillMd: `---
-name: GraphQL Schema Generator
-description: Generate GraphQL schemas with resolvers and type definitions.
+name: frontend-design
+description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications.
+license: Complete terms in LICENSE.txt
 ---
 
-# GraphQL Schema Generator
+# Frontend Design
 
-Create GraphQL APIs with ease.
+Create distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics.
 
-## Features
+## Design Thinking
 
-- Type definition generation
-- Resolver scaffolding
-- Query/mutation generation
-- Subscription support
-- DataLoader integration
+Before coding, understand the context and commit to a BOLD aesthetic direction:
+- **Purpose**: What problem does this interface solve?
+- **Tone**: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, etc.
+- **Differentiation**: What makes this UNFORGETTABLE?
+
+## Frontend Aesthetics Guidelines
+
+- **Typography**: Choose fonts that are beautiful, unique, and interesting
+- **Color & Theme**: Commit to a cohesive aesthetic
+- **Motion**: Use animations for effects and micro-interactions
+- **Spatial Composition**: Unexpected layouts, asymmetry, overlap
 `
   },
   {
-    id: "pdf-analyzer",
-    name: "PDF Document Analyzer",
-    description: "Extract and analyze content from PDF documents with structure preservation.",
+    id: "pdf",
+    name: "PDF Processing",
+    description: "Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms.",
     category: "Docs",
-    tags: ["pdf", "extraction", "analysis", "documents"],
-    platforms: ["Claude.ai", "Claude API"],
-    source: { kind: "website", label: "skillshunt.io", url: "https://skillshunt.io" },
-    popularity: { stars: 2456, installs: 17000 },
-    updatedAt: "2025-12-19",
-    authors: ["SkillsHunt Team"],
-    version: "2.1.0",
-    license: "MIT",
-    files: ["analyzer.ts", "extractors/"],
+    tags: ["pdf", "documents", "extraction", "forms"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/pdf" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
+    authors: ["Anthropic"],
+    version: "1.0.0",
+    license: "Proprietary",
+    files: ["SKILL.md", "forms.md", "reference.md"],
     skillMd: `---
-name: PDF Document Analyzer
-description: Extract and analyze content from PDF documents with structure preservation.
+name: pdf
+description: Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms.
+license: Proprietary. LICENSE.txt has complete terms
 ---
 
-# PDF Document Analyzer
+# PDF Processing Guide
 
-Intelligent PDF processing and analysis.
+## Overview
 
-## Features
+This guide covers essential PDF processing operations using Python libraries and command-line tools.
 
-- Text extraction with formatting
-- Table detection and extraction
-- Image extraction
-- Structure analysis
-- Searchable content generation
+## Python Libraries
+
+### pypdf - Basic Operations
+- Merge PDFs
+- Split PDF
+- Extract Metadata
+- Rotate Pages
+
+### pdfplumber - Text and Table Extraction
+- Extract Text with Layout
+- Extract Tables
+- Advanced Table Extraction
+
+### reportlab - Create PDFs
+- Basic PDF Creation
+- Create PDF with Multiple Pages
 `
   },
   {
-    id: "markdown-converter",
-    name: "Markdown Converter",
-    description: "Convert between document formats with Markdown as the hub.",
+    id: "docx",
+    name: "DOCX Processing",
+    description: "Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction.",
     category: "Docs",
-    tags: ["markdown", "conversion", "documents", "format"],
-    platforms: ["Claude Code", "Claude.ai", "ChatGPT"],
-    source: { kind: "github", label: "travisvn/awesome-claude-skills", url: "https://github.com/travisvn/awesome-claude-skills" },
-    popularity: { stars: 1123, installs: 6800 },
-    updatedAt: "2025-12-06",
-    authors: ["Travis VN"],
+    tags: ["docx", "word", "documents", "office"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/docx" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
+    authors: ["Anthropic"],
     version: "1.0.0",
-    license: "MIT",
-    files: ["converter.ts"],
+    license: "Proprietary",
+    files: ["SKILL.md", "docx-js.md", "ooxml.md"],
     skillMd: `---
-name: Markdown Converter
-description: Convert between document formats with Markdown as the hub.
+name: docx
+description: Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction.
+license: Proprietary. LICENSE.txt has complete terms
 ---
 
-# Markdown Converter
+# DOCX Creation, Editing, and Analysis
 
-Seamless document format conversion.
+## Workflow Decision Tree
 
-## Supported Formats
+### Reading/Analyzing Content
+Use "Text extraction" or "Raw XML access"
 
-- Markdown ↔ HTML
-- Markdown ↔ PDF
-- Markdown ↔ DOCX
-- Markdown ↔ RST
-- Markdown ↔ AsciiDoc
+### Creating New Document
+Use "Creating a new Word document" workflow
+
+### Editing Existing Document
+- Your own document + simple changes: Use "Basic OOXML editing"
+- Someone else's document: Use "Redlining workflow"
 `
   },
   {
-    id: "code-documentation",
-    name: "Code Documentation Generator",
-    description: "Generate inline documentation and JSDoc/TSDoc comments for code.",
+    id: "xlsx",
+    name: "XLSX Processing",
+    description: "Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, and visualization.",
+    category: "Data",
+    tags: ["xlsx", "excel", "spreadsheet", "data"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/xlsx" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
+    authors: ["Anthropic"],
+    version: "1.0.0",
+    license: "Proprietary",
+    files: ["SKILL.md"],
+    skillMd: `---
+name: xlsx
+description: Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, and visualization.
+license: Proprietary. LICENSE.txt has complete terms
+---
+
+# XLSX Processing
+
+## Requirements for Outputs
+
+### All Excel files
+- Zero Formula Errors
+- Preserve Existing Templates
+
+### Financial models
+- Color Coding Standards
+- Number Formatting Standards
+- Formula Construction Rules
+`
+  },
+  {
+    id: "pptx",
+    name: "PPTX Processing",
+    description: "Presentation creation, editing, and analysis for working with PowerPoint files including layouts, comments, and speaker notes.",
     category: "Docs",
-    tags: ["documentation", "jsdoc", "comments", "code"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1678, installs: 9200 },
-    updatedAt: "2025-12-12",
+    tags: ["pptx", "powerpoint", "presentation", "slides"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/pptx" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "1.2.0",
-    license: "MIT",
-    files: ["documenter.ts"],
+    version: "1.0.0",
+    license: "Proprietary",
+    files: ["SKILL.md", "ooxml/"],
     skillMd: `---
-name: Code Documentation Generator
-description: Generate inline documentation and JSDoc/TSDoc comments for code.
+name: pptx
+description: Presentation creation, editing, and analysis. When Claude needs to work with presentations (.pptx files).
+license: Proprietary. LICENSE.txt has complete terms
 ---
 
-# Code Documentation Generator
+# PPTX Creation, Editing, and Analysis
 
-Add comprehensive documentation to your code.
+## Reading and analyzing content
 
-## Features
+### Text extraction
+Convert document to markdown using markitdown
 
-- Function/method documentation
-- Parameter descriptions
-- Return type documentation
-- Example generation
-- @throws documentation
+### Raw XML access
+For comments, speaker notes, slide layouts, animations, design elements
 `
   },
   {
-    id: "accessibility-audit",
-    name: "Accessibility Audit",
-    description: "Audit web applications for WCAG compliance and accessibility issues.",
-    category: "Enterprise",
-    tags: ["accessibility", "wcag", "a11y", "audit"],
-    platforms: ["Claude Code", "Claude.ai"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1890, installs: 10500 },
-    updatedAt: "2025-12-17",
+    id: "skill-creator",
+    name: "Skill Creator",
+    description: "Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
+    category: "Development",
+    tags: ["skills", "development", "guide", "workflow"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/skill-creator" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "1.5.0",
+    version: "1.0.0",
     license: "MIT",
-    files: ["audit.ts", "rules/wcag.yaml"],
+    files: ["SKILL.md"],
     skillMd: `---
-name: Accessibility Audit
-description: Audit web applications for WCAG compliance and accessibility issues.
+name: skill-creator
+description: Guide for creating effective skills. This skill should be used when users want to create a new skill that extends Claude's capabilities.
+license: Complete terms in LICENSE.txt
 ---
 
-# Accessibility Audit
+# Skill Creator
 
-Ensure your web applications are accessible to everyone.
+## About Skills
 
-## Standards
+Skills are modular, self-contained packages that extend Claude's capabilities by providing specialized knowledge, workflows, and tools.
 
-- WCAG 2.1 Level A
-- WCAG 2.1 Level AA
-- WCAG 2.1 Level AAA
-- Section 508
+## Core Principles
 
-## Checks
+### Concise is Key
+The context window is a public good. Only add context Claude doesn't already have.
 
-- Color contrast
-- Keyboard navigation
-- Screen reader compatibility
-- ARIA attributes
-- Focus management
+### Set Appropriate Degrees of Freedom
+Match the level of specificity to the task's fragility and variability.
 `
   },
   {
-    id: "performance-analyzer",
-    name: "Performance Analyzer",
-    description: "Analyze and optimize application performance with actionable recommendations.",
-    category: "Enterprise",
-    tags: ["performance", "optimization", "profiling", "metrics"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2123, installs: 12800 },
-    updatedAt: "2025-12-16",
+    id: "webapp-testing",
+    name: "WebApp Testing",
+    description: "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, and capturing screenshots.",
+    category: "Development",
+    tags: ["testing", "playwright", "automation", "qa"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/webapp-testing" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "2.0.0",
+    version: "1.0.0",
     license: "MIT",
-    files: ["analyzer.ts", "metrics/"],
+    files: ["SKILL.md", "scripts/"],
     skillMd: `---
-name: Performance Analyzer
-description: Analyze and optimize application performance with actionable recommendations.
+name: webapp-testing
+description: Toolkit for interacting with and testing local web applications using Playwright.
+license: Complete terms in LICENSE.txt
 ---
 
-# Performance Analyzer
+# Web Application Testing
 
-Identify and fix performance bottlenecks.
+To test local web applications, write native Python Playwright scripts.
 
-## Analysis Areas
+## Decision Tree
 
-- Bundle size optimization
-- Runtime performance
-- Memory usage
-- Network requests
-- Rendering performance
-
-## Recommendations
-
-- Code splitting strategies
-- Lazy loading opportunities
-- Caching improvements
-- Database query optimization
+1. Is it static HTML? → Read HTML file directly
+2. Is the server already running?
+   - No → Use with_server.py helper
+   - Yes → Reconnaissance-then-action pattern
 `
   },
   {
-    id: "color-palette",
-    name: "Color Palette Generator",
-    description: "Generate harmonious color palettes with accessibility-compliant contrast ratios.",
+    id: "algorithmic-art",
+    name: "Algorithmic Art",
+    description: "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration for generative art and flow fields.",
     category: "Design",
-    tags: ["colors", "palette", "accessibility", "design"],
-    platforms: ["Claude.ai", "ChatGPT"],
-    source: { kind: "website", label: "skillsmp.com", url: "https://skillsmp.com" },
-    popularity: { stars: 1234, installs: 7500 },
-    updatedAt: "2025-12-11",
-    authors: ["SkillsMP Team"],
+    tags: ["art", "generative", "p5js", "creative"],
+    platforms: ["Claude Code", "Claude.ai"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/algorithmic-art" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
+    authors: ["Anthropic"],
     version: "1.0.0",
     license: "MIT",
-    files: ["generator.ts"],
+    files: ["SKILL.md"],
     skillMd: `---
-name: Color Palette Generator
-description: Generate harmonious color palettes with accessibility-compliant contrast ratios.
+name: algorithmic-art
+description: Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration.
+license: Complete terms in LICENSE.txt
 ---
 
-# Color Palette Generator
+# Algorithmic Art
 
-Create beautiful, accessible color palettes.
+Create algorithmic philosophies expressed through code. Output .md files (philosophy), .html files (interactive viewer), and .js files (generative algorithms).
 
-## Features
-
-- Harmony-based generation
-- WCAG contrast compliance
-- Dark mode variants
-- Export to CSS/Tailwind/Figma
+## Process
+1. Algorithmic Philosophy Creation (.md file)
+2. Express by creating p5.js generative art (.html + .js files)
 `
   },
   {
-    id: "icon-generator",
-    name: "SVG Icon Generator",
-    description: "Generate custom SVG icons with consistent style and size.",
+    id: "canvas-design",
+    name: "Canvas Design",
+    description: "Create beautiful visual art in .png and .pdf documents using design philosophy for posters, art pieces, and static designs.",
     category: "Design",
-    tags: ["icons", "svg", "graphics", "design"],
-    platforms: ["Claude.ai", "Claude API"],
-    source: { kind: "github", label: "travisvn/awesome-claude-skills", url: "https://github.com/travisvn/awesome-claude-skills" },
-    popularity: { stars: 987, installs: 5400 },
-    updatedAt: "2025-12-09",
-    authors: ["Travis VN"],
-    version: "1.1.0",
-    license: "MIT",
-    files: ["generator.ts", "templates/"],
-    skillMd: `---
-name: SVG Icon Generator
-description: Generate custom SVG icons with consistent style and size.
----
-
-# SVG Icon Generator
-
-Create custom icons for your projects.
-
-## Features
-
-- Multiple icon styles
-- Consistent sizing
-- Optimized SVG output
-- React component export
-`
-  },
-  {
-    id: "data-visualization",
-    name: "Data Visualization Generator",
-    description: "Generate interactive charts and visualizations from data.",
-    category: "Data",
-    tags: ["charts", "visualization", "d3", "analytics"],
+    tags: ["design", "art", "visual", "poster"],
     platforms: ["Claude Code", "Claude.ai"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1567, installs: 8900 },
-    updatedAt: "2025-12-15",
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/canvas-design" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "1.3.0",
-    license: "MIT",
-    files: ["generator.ts", "chart-types/"],
-    skillMd: `---
-name: Data Visualization Generator
-description: Generate interactive charts and visualizations from data.
----
-
-# Data Visualization Generator
-
-Create stunning data visualizations.
-
-## Chart Types
-
-- Line charts
-- Bar charts
-- Pie charts
-- Scatter plots
-- Heatmaps
-- Geographic maps
-`
-  },
-  {
-    id: "csv-processor",
-    name: "CSV Data Processor",
-    description: "Process, transform, and analyze CSV files with advanced operations.",
-    category: "Data",
-    tags: ["csv", "data", "processing", "transform"],
-    platforms: ["Claude Code", "Claude.ai", "ChatGPT"],
-    source: { kind: "website", label: "skillshunt.io", url: "https://skillshunt.io" },
-    popularity: { stars: 1123, installs: 6200 },
-    updatedAt: "2025-12-10",
-    authors: ["SkillsHunt Team"],
     version: "1.0.0",
     license: "MIT",
-    files: ["processor.ts"],
+    files: ["SKILL.md"],
     skillMd: `---
-name: CSV Data Processor
-description: Process, transform, and analyze CSV files with advanced operations.
+name: canvas-design
+description: Create beautiful visual art in .png and .pdf documents using design philosophy.
+license: Complete terms in LICENSE.txt
 ---
 
-# CSV Data Processor
+# Canvas Design
 
-Powerful CSV manipulation capabilities.
+Create design philosophies - aesthetic movements that are then EXPRESSED VISUALLY.
 
-## Operations
-
-- Filter and sort
-- Column transformations
-- Aggregations
-- Joins and merges
-- Data validation
+## Process
+1. Design Philosophy Creation (.md file)
+2. Express by creating it on a canvas (.pdf file or .png file)
 `
   },
   {
-    id: "cron-scheduler",
-    name: "Cron Job Scheduler",
-    description: "Create and manage cron expressions with human-readable descriptions.",
-    category: "Automation",
-    tags: ["cron", "scheduling", "automation", "jobs"],
-    platforms: ["Claude Code", "Codex CLI", "ChatGPT"],
-    source: { kind: "github", label: "travisvn/awesome-claude-skills", url: "https://github.com/travisvn/awesome-claude-skills" },
-    popularity: { stars: 876, installs: 4800 },
-    updatedAt: "2025-12-07",
-    authors: ["Travis VN"],
+    id: "brand-guidelines",
+    name: "Brand Guidelines",
+    description: "Applies Anthropic's official brand colors and typography to any artifact that may benefit from having Anthropic's look-and-feel.",
+    category: "Design",
+    tags: ["branding", "style", "colors", "typography"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/brand-guidelines" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
+    authors: ["Anthropic"],
     version: "1.0.0",
     license: "MIT",
-    files: ["scheduler.ts"],
+    files: ["SKILL.md"],
     skillMd: `---
-name: Cron Job Scheduler
-description: Create and manage cron expressions with human-readable descriptions.
+name: brand-guidelines
+description: Applies Anthropic's official brand colors and typography to any sort of artifact.
+license: Complete terms in LICENSE.txt
 ---
 
-# Cron Job Scheduler
+# Anthropic Brand Styling
 
-Easily create and understand cron schedules.
+## Brand Guidelines
 
-## Features
+### Colors
+- Dark: #141413
+- Light: #faf9f5
+- Orange: #d97757
+- Blue: #6a9bcc
+- Green: #788c5d
 
-- Natural language to cron
-- Cron to human-readable
-- Next run predictions
-- Common schedule templates
+### Typography
+- Headings: Poppins
+- Body Text: Lora
 `
   },
   {
-    id: "email-template",
-    name: "Email Template Generator",
-    description: "Create responsive email templates compatible with major email clients.",
-    category: "Automation",
-    tags: ["email", "templates", "html", "responsive"],
-    platforms: ["Claude.ai", "ChatGPT"],
-    source: { kind: "website", label: "skillsmp.com", url: "https://skillsmp.com" },
-    popularity: { stars: 1234, installs: 7100 },
-    updatedAt: "2025-12-13",
-    authors: ["SkillsMP Team"],
-    version: "1.2.0",
-    license: "MIT",
-    files: ["generator.ts", "templates/"],
-    skillMd: `---
-name: Email Template Generator
-description: Create responsive email templates compatible with major email clients.
----
-
-# Email Template Generator
-
-Build email templates that work everywhere.
-
-## Features
-
-- Responsive design
-- Dark mode support
-- Client compatibility
-- Template variables
-- Preview generation
-`
-  },
-  {
-    id: "kubernetes-manifest",
-    name: "Kubernetes Manifest Generator",
-    description: "Generate Kubernetes manifests with best practices and security configurations.",
-    category: "Automation",
-    tags: ["kubernetes", "k8s", "containers", "devops"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2345, installs: 14500 },
-    updatedAt: "2025-12-18",
+    id: "theme-factory",
+    name: "Theme Factory",
+    description: "Toolkit for styling artifacts with themes. Provides 10 pre-set themes with colors/fonts that can be applied to slides, docs, reports, and HTML pages.",
+    category: "Design",
+    tags: ["themes", "styling", "colors", "presentation"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/theme-factory" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "1.4.0",
+    version: "1.0.0",
     license: "MIT",
-    files: ["generator.ts", "templates/"],
+    files: ["SKILL.md", "theme-showcase.pdf"],
     skillMd: `---
-name: Kubernetes Manifest Generator
-description: Generate Kubernetes manifests with best practices and security configurations.
+name: theme-factory
+description: Toolkit for styling artifacts with a theme. There are 10 pre-set themes with colors/fonts.
+license: Complete terms in LICENSE.txt
 ---
 
-# Kubernetes Manifest Generator
+# Theme Factory Skill
 
-Create production-ready Kubernetes configurations.
+## Themes Available
 
-## Resource Types
-
-- Deployments
-- Services
-- ConfigMaps
-- Secrets
-- Ingress
-- RBAC
-
-## Best Practices
-
-- Resource limits
-- Security contexts
-- Health checks
-- Pod disruption budgets
+1. Ocean Depths - Professional and calming maritime theme
+2. Sunset Boulevard - Warm and vibrant sunset colors
+3. Forest Canopy - Natural and grounded earth tones
+4. Modern Minimalist - Clean and contemporary grayscale
+5. Golden Hour - Rich and warm autumnal palette
+6. Arctic Frost - Cool and crisp winter-inspired theme
+7. Desert Rose - Soft and sophisticated dusty tones
+8. Tech Innovation - Bold and modern tech aesthetic
+9. Botanical Garden - Fresh and organic
+10. Midnight Galaxy - Deep and mysterious space theme
 `
   },
   {
-    id: "error-handler",
-    name: "Error Handler Generator",
-    description: "Generate comprehensive error handling with logging and recovery strategies.",
-    category: "Development",
-    tags: ["errors", "handling", "logging", "resilience"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1123, installs: 6500 },
-    updatedAt: "2025-12-11",
-    authors: ["Anthropic"],
-    version: "1.1.0",
-    license: "MIT",
-    files: ["handler.ts", "strategies/"],
-    skillMd: `---
-name: Error Handler Generator
-description: Generate comprehensive error handling with logging and recovery strategies.
----
-
-# Error Handler Generator
-
-Build robust error handling systems.
-
-## Features
-
-- Custom error classes
-- Error boundary components
-- Retry strategies
-- Logging integration
-- User-friendly messages
-`
-  },
-  {
-    id: "i18n-manager",
-    name: "Internationalization Manager",
-    description: "Manage translations and internationalization with extraction and validation.",
-    category: "Development",
-    tags: ["i18n", "translations", "localization", "languages"],
+    id: "doc-coauthoring",
+    name: "Doc Co-Authoring",
+    description: "Guide users through a structured workflow for co-authoring documentation, proposals, technical specs, and decision docs.",
+    category: "Docs",
+    tags: ["documentation", "writing", "workflow", "collaboration"],
     platforms: ["Claude Code", "Claude.ai"],
-    source: { kind: "github", label: "travisvn/awesome-claude-skills", url: "https://github.com/travisvn/awesome-claude-skills" },
-    popularity: { stars: 987, installs: 5600 },
-    updatedAt: "2025-12-08",
-    authors: ["Travis VN"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
+    authors: ["Anthropic"],
     version: "1.0.0",
     license: "MIT",
-    files: ["manager.ts", "extractors/"],
+    files: ["SKILL.md"],
     skillMd: `---
-name: Internationalization Manager
-description: Manage translations and internationalization with extraction and validation.
+name: doc-coauthoring
+description: Guide users through a structured workflow for co-authoring documentation.
 ---
 
-# Internationalization Manager
+# Doc Co-Authoring Workflow
 
-Streamline your i18n workflow.
-
-## Features
-
-- String extraction
-- Translation validation
-- Missing key detection
-- Pluralization support
-- RTL handling
+## Three Stages
+1. **Context Gathering**: User provides all relevant context
+2. **Refinement & Structure**: Iteratively build each section
+3. **Reader Testing**: Test the doc with a fresh Claude
 `
   },
   {
-    id: "env-manager",
-    name: "Environment Manager",
-    description: "Manage environment variables across different environments with validation.",
-    category: "Development",
-    tags: ["environment", "config", "dotenv", "secrets"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1456, installs: 8200 },
-    updatedAt: "2025-12-14",
+    id: "internal-comms",
+    name: "Internal Communications",
+    description: "Resources to write internal communications including status reports, leadership updates, 3P updates, company newsletters, FAQs, and incident reports.",
+    category: "Docs",
+    tags: ["communications", "writing", "business", "reports"],
+    platforms: ["Claude Code", "Claude.ai"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/internal-comms" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "1.2.0",
+    version: "1.0.0",
     license: "MIT",
-    files: ["manager.ts", "validators/"],
+    files: ["SKILL.md", "examples/"],
     skillMd: `---
-name: Environment Manager
-description: Manage environment variables across different environments with validation.
+name: internal-comms
+description: A set of resources to help write all kinds of internal communications.
+license: Complete terms in LICENSE.txt
 ---
 
-# Environment Manager
+# Internal Communications
 
-Organize and validate environment configurations.
-
-## Features
-
-- Environment file generation
-- Variable validation
-- Secret detection
-- Cross-environment sync
-- Type generation
+## When to use this skill
+- 3P updates (Progress, Plans, Problems)
+- Company newsletters
+- FAQ responses
+- Status reports
+- Leadership updates
+- Project updates
+- Incident reports
 `
   },
   {
-    id: "migration-generator",
-    name: "Database Migration Generator",
-    description: "Generate database migrations with rollback support and data preservation.",
-    category: "Data",
-    tags: ["database", "migrations", "sql", "schema"],
-    platforms: ["Claude Code", "Claude API"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 1678, installs: 9800 },
-    updatedAt: "2025-12-16",
+    id: "slack-gif-creator",
+    name: "Slack GIF Creator",
+    description: "Knowledge and utilities for creating animated GIFs optimized for Slack with constraints, validation tools, and animation concepts.",
+    category: "Design",
+    tags: ["gif", "animation", "slack", "emoji"],
+    platforms: ["Claude Code"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/slack-gif-creator" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "1.3.0",
+    version: "1.0.0",
     license: "MIT",
-    files: ["generator.ts", "templates/"],
+    files: ["SKILL.md", "core/"],
     skillMd: `---
-name: Database Migration Generator
-description: Generate database migrations with rollback support and data preservation.
+name: slack-gif-creator
+description: Knowledge and utilities for creating animated GIFs optimized for Slack.
+license: Complete terms in LICENSE.txt
 ---
 
-# Database Migration Generator
+# Slack GIF Creator
 
-Create safe database migrations.
+## Slack Requirements
 
-## Features
+**Dimensions:**
+- Emoji GIFs: 128x128 (recommended)
+- Message GIFs: 480x480
 
-- Up/down migrations
-- Data migration support
-- Schema validation
-- Rollback safety
-- Version tracking
+**Parameters:**
+- FPS: 10-30
+- Colors: 48-128
+- Duration: Keep under 3 seconds for emoji GIFs
 `
   },
   {
-    id: "mock-data",
-    name: "Mock Data Generator",
-    description: "Generate realistic mock data for testing and development.",
+    id: "web-artifacts-builder",
+    name: "Web Artifacts Builder",
+    description: "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using React, Tailwind CSS, and shadcn/ui.",
     category: "Development",
-    tags: ["mock", "data", "testing", "faker"],
-    platforms: ["Claude Code", "Claude.ai", "ChatGPT"],
-    source: { kind: "website", label: "skillshunt.io", url: "https://skillshunt.io" },
-    popularity: { stars: 1567, installs: 9100 },
-    updatedAt: "2025-12-12",
-    authors: ["SkillsHunt Team"],
-    version: "1.1.0",
-    license: "MIT",
-    files: ["generator.ts", "schemas/"],
-    skillMd: `---
-name: Mock Data Generator
-description: Generate realistic mock data for testing and development.
----
-
-# Mock Data Generator
-
-Create realistic test data.
-
-## Data Types
-
-- User profiles
-- Addresses
-- Products
-- Transactions
-- Content
-
-## Features
-
-- Schema-based generation
-- Relationship support
-- Localized data
-- Consistent seeds
-`
-  },
-  {
-    id: "component-generator",
-    name: "React Component Generator",
-    description: "Scaffold React components with TypeScript, tests, and stories.",
-    category: "Development",
-    tags: ["react", "components", "typescript", "scaffold"],
-    platforms: ["Claude Code", "Codex CLI"],
-    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills" },
-    popularity: { stars: 2345, installs: 15000 },
-    updatedAt: "2025-12-19",
+    tags: ["react", "artifacts", "frontend", "components"],
+    platforms: ["Claude.ai"],
+    source: { kind: "github", label: "anthropics/skills", url: "https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder" },
+    popularity: { stars: 0, installs: 0 },
+    updatedAt: "2025-12-20",
     authors: ["Anthropic"],
-    version: "2.0.0",
+    version: "1.0.0",
     license: "MIT",
-    files: ["generator.ts", "templates/"],
+    files: ["SKILL.md", "scripts/"],
     skillMd: `---
-name: React Component Generator
-description: Scaffold React components with TypeScript, tests, and stories.
+name: web-artifacts-builder
+description: Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies.
+license: Complete terms in LICENSE.txt
 ---
 
-# React Component Generator
+# Web Artifacts Builder
 
-Quickly scaffold React components.
+**Stack**: React 18 + TypeScript + Vite + Parcel + Tailwind CSS + shadcn/ui
 
-## Generated Files
+## Quick Start
 
-- Component file
-- TypeScript types
-- Unit tests
-- Storybook story
-- CSS module
-
-## Features
-
-- Multiple patterns (functional, forwardRef)
-- Prop type generation
-- Default export configuration
-- Index file generation
+1. Initialize Project: \`bash scripts/init-artifact.sh <project-name>\`
+2. Develop Your Artifact
+3. Bundle to Single HTML File: \`bash scripts/bundle-artifact.sh\`
 `
   }
 ];
 
 export const collections: Collection[] = [
   {
-    id: "pdf-docs-toolkit",
-    name: "PDF & Docs Toolkit",
-    description: "Complete toolkit for document processing, analysis, and conversion.",
+    id: "office-docs-toolkit",
+    name: "Office Docs Toolkit",
+    description: "Complete toolkit for working with Office documents - Word, Excel, PowerPoint, and PDF.",
     icon: "FileText",
     color: "bg-blue-500",
-    skillIds: ["pdf-analyzer", "markdown-converter", "code-documentation", "readme-generator", "api-docs-generator"]
+    skillIds: ["pdf", "docx", "xlsx", "pptx"]
   },
   {
-    id: "git-workflow",
-    name: "Git Workflow",
-    description: "Streamline your Git workflow with automated commits, changelogs, and reviews.",
-    icon: "GitBranch",
-    color: "bg-orange-500",
-    skillIds: ["git-commit-message", "changelog-generator", "code-review"]
-  },
-  {
-    id: "security-review",
-    name: "Security Review",
-    description: "Comprehensive security tools for auditing and compliance.",
-    icon: "Shield",
-    color: "bg-red-500",
-    skillIds: ["security-audit", "license-compliance", "accessibility-audit"]
-  },
-  {
-    id: "design-ops",
-    name: "Design Ops",
-    description: "Bridge the gap between design and development.",
+    id: "design-creative",
+    name: "Design & Creative",
+    description: "Tools for creating beautiful visual designs, art, and interfaces.",
     icon: "Palette",
     color: "bg-purple-500",
-    skillIds: ["figma-to-code", "design-system-generator", "color-palette", "icon-generator"]
+    skillIds: ["frontend-design", "algorithmic-art", "canvas-design", "slack-gif-creator"]
   },
   {
-    id: "devops-automation",
-    name: "DevOps Automation",
-    description: "Automate your infrastructure and deployment pipelines.",
-    icon: "Settings",
+    id: "styling-theming",
+    name: "Styling & Theming",
+    description: "Apply consistent styling and themes to your artifacts.",
+    icon: "Paintbrush",
+    color: "bg-pink-500",
+    skillIds: ["brand-guidelines", "theme-factory", "frontend-design"]
+  },
+  {
+    id: "documentation-writing",
+    name: "Documentation & Writing",
+    description: "Tools for writing documentation, communications, and collaborative content.",
+    icon: "PenTool",
     color: "bg-green-500",
-    skillIds: ["github-actions", "docker-compose", "terraform-generator", "kubernetes-manifest"]
+    skillIds: ["doc-coauthoring", "internal-comms"]
   },
   {
-    id: "data-engineering",
-    name: "Data Engineering",
-    description: "Tools for data processing, pipelines, and analysis.",
-    icon: "Database",
-    color: "bg-cyan-500",
-    skillIds: ["sql-query-builder", "data-pipeline", "database-schema", "migration-generator", "csv-processor"]
-  },
-  {
-    id: "testing-quality",
-    name: "Testing & Quality",
-    description: "Ensure code quality with automated testing and reviews.",
-    icon: "CheckCircle",
-    color: "bg-emerald-500",
-    skillIds: ["test-generator", "code-review", "performance-analyzer", "mock-data"]
-  },
-  {
-    id: "react-essentials",
-    name: "React Essentials",
-    description: "Essential tools for React development.",
+    id: "developer-tools",
+    name: "Developer Tools",
+    description: "Essential tools for developers - MCP servers, testing, and skill creation.",
     icon: "Code",
-    color: "bg-indigo-500",
-    skillIds: ["component-generator", "typescript-migration", "figma-to-code", "design-system-generator"]
+    color: "bg-orange-500",
+    skillIds: ["mcp-builder", "webapp-testing", "skill-creator", "web-artifacts-builder"]
   }
 ];
 

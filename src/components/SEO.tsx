@@ -10,7 +10,7 @@ interface SEOProps {
   type?: "website" | "article";
 }
 
-const BASE_URL = "https://skillshub.dev";
+const BASE_URL = "https://agentskills.dev";
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 export function SEO({
@@ -23,7 +23,7 @@ export function SEO({
 }: SEOProps) {
   const { t, i18n } = useTranslation();
 
-  const defaultTitle = t("seo.defaultTitle", "SkillsHub - Discover & Share AI Agent Skills");
+  const defaultTitle = t("seo.defaultTitle", "AgentSkills - Discover & Share AI Agent Skills");
   const defaultDescription = t(
     "seo.defaultDescription",
     "A community-driven directory for discovering, sharing, and deploying AI Agent Skills following the open SKILL.md standard."
@@ -33,7 +33,7 @@ export function SEO({
     "AI skills, agent skills, SKILL.md, Claude skills, ChatGPT skills, AI assistants, LLM tools"
   );
 
-  const finalTitle = title ? `${title} | SkillsHub` : defaultTitle;
+  const finalTitle = title ? `${title} | AgentSkills` : defaultTitle;
   const finalDescription = description || defaultDescription;
   const finalKeywords = keywords || defaultKeywords;
   const currentLang = i18n.language;

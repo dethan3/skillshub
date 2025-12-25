@@ -1,4 +1,4 @@
-# SkillsHub - AI Agent Skills Directory
+# Agent Skills - AI Agent Skills Directory
 
 > **Discover, Share, and Deploy AI Agent Skills** — A community-driven directory following the open [SKILL.md](https://github.com/anthropics/skills) standard for Claude, ChatGPT, and other AI assistants.
 

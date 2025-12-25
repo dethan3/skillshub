@@ -28,12 +28,12 @@ export function SkillCard({ skill, showQuickView = true }: SkillCardProps) {
               {skill.name}
             </h3>
           </Link>
-          {skill.popularity?.stars && (
+          {skill.popularity?.stars ? (
             <div className="flex items-center gap-1 text-sm text-[hsl(var(--muted-foreground))] shrink-0">
               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span>{skill.popularity.stars.toLocaleString()}</span>
             </div>
-          )}
+          ) : null}
         </div>
         <p className="text-sm text-[hsl(var(--muted-foreground))] line-clamp-2 mt-1">
           {skill.description}

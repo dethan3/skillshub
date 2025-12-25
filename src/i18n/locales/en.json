@@ -28,7 +28,7 @@
     "site": "Site",
     "ecosystem": "Ecosystem",
     "description": "A community-driven directory for discovering, sharing, and deploying Agent Skills following the open SKILL.md standard. Not an official Anthropic product.",
-    "copyright": "© {{year}} SkillsHub. This is a community project showcasing the SKILL.md open standard. Not affiliated with Anthropic, OpenAI, or any specific AI provider."
+    "copyright": "© {{year}} AgentSkills. This is a community project showcasing the SKILL.md open standard. Not affiliated with Anthropic, OpenAI, or any specific AI provider."
   },
   "landing": {
     "hero": {
@@ -120,15 +120,16 @@
     "officialRepo": "Official Skills Repo",
     "skillmdSpec": "SKILL.md Specification",
     "submissionReceived": "Submission Received",
-    "submissionThanks": "Thank you for contributing to the SkillsHub ecosystem! Your skill has been added to our review queue and will be reviewed shortly.",
+    "submissionThanks": "Thank you for contributing to the AgentSkills ecosystem! Your skill has been added to our review queue and will be reviewed shortly.",
     "submitAnother": "Submit Another",
     "missingFields": "Missing required fields",
     "fillRequired": "Please fill in all required fields.",
     "skillSubmitted": "Skill submitted",
-    "addedToQueue": "Your skill has been added to the review queue."
+    "addedToQueue": "Your skill has been added to the review queue.",
+    "redirectedToGitHub": "You will be redirected to GitHub to complete your submission."
   },
   "about": {
-    "title": "About SkillsHub",
+    "title": "About AgentSkills",
     "description": "A community-driven directory for discovering, sharing, and deploying Agent Skills following the open SKILL.md standard.",
     "whatAreSkills": "What are Agent Skills?",
     "modularCapabilities": "Modular Capabilities",
@@ -183,7 +184,7 @@
     "zh": "中文"
   },
   "seo": {
-    "defaultTitle": "SkillsHub - Discover & Share AI Agent Skills | SKILL.md Directory",
+    "defaultTitle": "AgentSkills - Discover & Share AI Agent Skills | SKILL.md Directory",
     "defaultDescription": "A community-driven directory for discovering, sharing, and deploying AI Agent Skills following the open SKILL.md standard. Find skills for Claude, ChatGPT, and other AI assistants.",
     "defaultKeywords": "AI skills, agent skills, SKILL.md, Claude skills, ChatGPT skills, AI assistants, LLM tools, AI automation",
     "libraryTitle": "Skills Library",
@@ -192,7 +193,7 @@
     "collectionsDescription": "Hand-picked skill bundles for common workflows including documentation, Git, code quality, and more.",
     "submitTitle": "Submit a Skill",
     "submitDescription": "Share your AI skills with the community. Submit skills following the SKILL.md specification.",
-    "aboutTitle": "About SkillsHub",
-    "aboutDescription": "Learn about SkillsHub, the SKILL.md specification, and how to create and install AI Agent Skills."
+    "aboutTitle": "About AgentSkills",
+    "aboutDescription": "Learn about AgentSkills, the SKILL.md specification, and how to create and install AI Agent Skills."
   }
 }

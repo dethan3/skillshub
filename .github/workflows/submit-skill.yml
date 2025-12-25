@@ -1,0 +1,55 @@
+name: Skill Submission
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  Process-Skill-Submission:
+    if: github.event.label.name == 'skill-submission'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: issue-parser
+        uses: stefanbuck/github-issue-parser@v3
+        with:
+          template-path: ".github/ISSUE_TEMPLATE/submit-skill.yml"
+
+      - name: Create submission file
+        run: |
+          mkdir -p submissions
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          
+          cat << 'EOF' > submissions/skill-${ISSUE_NUMBER}-${TIMESTAMP}.json
+          {
+            "issue_number": ${{ github.event.issue.number }},
+            "issue_title": "${{ github.event.issue.title }}",
+            "submitted_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "repo_url": "${{ steps.issue-parser.outputs.issueparser_repo_url }}",
+            "skill_name": "${{ steps.issue-parser.outputs.issueparser_skill_name }}",
+            "description": "${{ steps.issue-parser.outputs.issueparser_description }}",
+            "category": "${{ steps.issue-parser.outputs.issueparser_category }}",
+            "platforms": "${{ steps.issue-parser.outputs.issueparser_platforms }}",
+            "tags": "${{ steps.issue-parser.outputs.issueparser_tags }}",
+            "status": "pending"
+          }
+          EOF
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "[skill] Add ${{ steps.issue-parser.outputs.issueparser_skill_name }}"
+          body: |
+            ## New Skill Submission
+            
+            **Name:** ${{ steps.issue-parser.outputs.issueparser_skill_name }}
+            **Repository:** ${{ steps.issue-parser.outputs.issueparser_repo_url }}
+            **Category:** ${{ steps.issue-parser.outputs.issueparser_category }}
+            **Description:** ${{ steps.issue-parser.outputs.issueparser_description }}
+            
+            ---
+            Closes #${{ github.event.issue.number }}
+          branch: skill-submission-${{ github.event.issue.number }}
+          commit-message: "Add skill submission: ${{ steps.issue-parser.outputs.issueparser_skill_name }}"
