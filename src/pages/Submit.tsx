@@ -52,6 +52,8 @@ export function Submit() {
     }));
   };
 
+  const GITHUB_REPO = "dethan3/skillshub";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -64,19 +66,32 @@ export function Submit() {
       return;
     }
 
-    const submissions = JSON.parse(localStorage.getItem("skillshub-submissions") || "[]");
-    submissions.push({
-      ...form,
-      id: Date.now().toString(),
-      submittedAt: new Date().toISOString(),
-      status: "pending",
+    // GitHub issue form URL format
+    const baseUrl = `https://github.com/${GITHUB_REPO}/issues/new`;
+    const params = new URLSearchParams({
+      template: "submit-skill.yml",
+      title: form.name,
+      "repo_url": form.repoUrl,
+      "skill_name": form.name,
+      "description": form.description,
+      "category": form.category,
+      "tags": form.tags,
     });
-    localStorage.setItem("skillshub-submissions", JSON.stringify(submissions));
+
+    // Add platforms as comma-separated for reference
+    if (form.platforms.length > 0) {
+      params.set("platforms", form.platforms.join(", "));
+    }
+
+    const issueUrl = `${baseUrl}?${params.toString()}`;
+    
+    // Open GitHub issue creation page in new tab
+    window.open(issueUrl, "_blank");
 
     setSubmitted(true);
     toast({
       title: t("submit.skillSubmitted"),
-      description: t("submit.addedToQueue"),
+      description: t("submit.redirectedToGitHub"),
     });
   };
 

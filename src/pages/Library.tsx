@@ -122,7 +122,7 @@ export function Library() {
     setSortBy("popular");
   };
 
-  const hasActiveFilters = searchQuery || selectedCategories.length || selectedPlatforms.length;
+  const hasActiveFilters = !!(searchQuery || selectedCategories.length || selectedPlatforms.length);
 
   const FilterContent = () => (
     <div className="space-y-6">

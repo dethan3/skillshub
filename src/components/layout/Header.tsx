@@ -34,9 +34,9 @@ export function Header({ onOpenSearch }: { onOpenSearch: () => void }) {
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[hsl(var(--primary))]">
-              <span className="text-sm font-bold text-[hsl(var(--primary-foreground))]">S</span>
+              <span className="text-sm font-bold text-[hsl(var(--primary-foreground))]">A</span>
             </div>
-            <span className="text-xl font-bold">SkillsHub</span>
+            <span className="text-xl font-bold">AgentSkills</span>
           </Link>
           
           <nav className="hidden md:flex items-center gap-1">
