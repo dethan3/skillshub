@@ -6,6 +6,7 @@
     "library": "Library",
     "submit": "Submit",
     "about": "About",
+    "authors": "Authors",
     "search": "Search",
     "view": "View",
     "viewAll": "View all",
@@ -34,7 +35,9 @@
     "hero": {
       "title": "Discover & Share",
       "subtitle": "Agent Skills",
-      "description": "A curated directory of reusable AI skills following the open SKILL.md standard. Find the perfect skills for Claude, ChatGPT, and other AI assistants."
+      "description": "A curated directory of reusable AI skills following the open SKILL.md standard. Find the perfect skills for Claude, ChatGPT, and other AI assistants.",
+      "searchPlaceholder": "Search skills for Claude, ChatGPT...",
+      "quickTags": "Popular:"
     },
     "categories": {
       "title": "Browse by Category",
@@ -62,9 +65,33 @@
       "composable": "Composable",
       "composableDesc": "Combine multiple skills to create powerful automation workflows."
     },
+    "stats": {
+      "skills": "Skills",
+      "collections": "Collections",
+      "platforms": "Platforms",
+      "tags": "Tags"
+    },
     "featured": {
-      "title": "Featured Skills",
-      "description": "Popular and trending skills from the community"
+      "title": "Popular Skills",
+      "description": "Top skills sorted by community stars"
+    },
+    "quickStart": {
+      "title": "Get Started in 10 Seconds",
+      "description": "Install any skill with two commands",
+      "step1": "Clone the official skills repo",
+      "step2": "Copy a skill to your skills directory",
+      "step3": "That's it — Claude will use it automatically"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "Three steps to supercharge your AI workflow",
+      "discoverTitle": "Discover",
+      "discoverDesc": "Browse 30+ curated skills or search by category, platform, or tag",
+      "installTitle": "Install",
+      "installDesc": "Copy the skill folder to ~/.claude/skills/ or your project's .claude/skills/",
+      "useTitle": "Use",
+      "useDesc": "Claude automatically discovers and invokes skills based on context",
+      "learnMore": "Learn more about SKILL.md"
     },
     "collections": {
       "title": "Curated Collections",
@@ -79,10 +106,17 @@
     "mostPopular": "Most Popular",
     "recentlyUpdated": "Recently Updated",
     "alphabetical": "A–Z",
+    "trending": "Trending",
     "categories": "Categories",
     "platforms": "Platforms",
     "filters": "Filters",
     "noResults": "No skills found matching your criteria",
+    "emptyTitle": "No skills found",
+    "emptyDesc": "Try adjusting your search or filters",
+    "trySearches": "Popular searches:",
+    "browseByCategory": "Or browse by category:",
+    "authors": "Authors",
+    "kol": "KOL",
     "showingResults": "Showing {{count}} skill",
     "showingResults_plural": "Showing {{count}} skills"
   },
@@ -127,6 +161,12 @@
     "skillSubmitted": "Skill submitted",
     "addedToQueue": "Your skill has been added to the review queue.",
     "redirectedToGitHub": "You will be redirected to GitHub to complete your submission."
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist.",
+    "message": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home"
   },
   "about": {
     "title": "About AgentSkills",
@@ -173,7 +213,64 @@
     "license": "License",
     "platforms": "Platforms",
     "tags": "Tags",
-    "lastUpdated": "Last updated"
+    "lastUpdated": "Last updated",
+    "installGlobal": "Global (Recommended)",
+    "installProject": "Project",
+    "installGlobalCmd": "Copy to ~/.claude/skills/",
+    "installProjectCmd": "Copy to .claude/skills/",
+    "autoDiscover": "Claude will automatically discover this skill based on context",
+    "reportIssue": "Report",
+    "notFound": "Skill not found",
+    "notFoundDesc": "The skill you're looking for doesn't exist or has been removed.",
+    "browseAll": "Browse all skills",
+    "details": "Details",
+    "source": "Source",
+    "authors": "Authors",
+    "youMightAlsoLike": "You might also like",
+    "recommendedBy": "Recommended by",
+    "commitFrequency": "Activity",
+    "contributors": "Contributors",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "inactive": "Inactive"
+  },
+  "searchCommand": {
+    "placeholder": "Search skills, collections, or tags...",
+    "noResults": "No results found.",
+    "skills": "Skills",
+    "collections": "Collections",
+    "quickActions": "Quick Actions",
+    "browseAll": "Browse all skills",
+    "viewCollections": "View collections",
+    "submitSkill": "Submit a skill"
+  },
+  "collectionDetail": {
+    "notFound": "Collection not found",
+    "notFoundDesc": "The collection you're looking for doesn't exist or has been removed.",
+    "browseAll": "Browse all collections",
+    "skillsInCollection": "{{count}} skills in this collection"
+  },
+  "authors": {
+    "title": "Authors",
+    "description": "Browse skills by their creators and maintainers",
+    "searchPlaceholder": "Search authors...",
+    "sortBy": "Sort by",
+    "mostSkills": "Most Skills",
+    "alphabetical": "A–Z",
+    "kolOnly": "KOLs Only",
+    "noResults": "No authors found",
+    "skillsCount": "{{count}} skills",
+    "kol": "KOL"
+  },
+  "authorDetail": {
+    "notFound": "Author not found",
+    "notFoundDesc": "This author doesn't exist or has been removed.",
+    "browseAll": "Browse all authors",
+    "skillsByAuthor": "Skills by {{name}}",
+    "kolNote": "Notable: {{note}}",
+    "github": "GitHub",
+    "twitter": "Twitter"
   },
   "skillCard": {
     "view": "View"
@@ -188,7 +285,7 @@
     "defaultDescription": "A community-driven directory for discovering, sharing, and deploying AI Agent Skills following the open SKILL.md standard. Find skills for Claude, ChatGPT, and other AI assistants.",
     "defaultKeywords": "AI skills, agent skills, SKILL.md, Claude skills, ChatGPT skills, AI assistants, LLM tools, AI automation",
     "libraryTitle": "Skills Library",
-    "libraryDescription": "Browse and discover 40+ curated AI skills for your AI workflows. Filter by category, platform, and more.",
+    "libraryDescription": "Browse and discover 30+ curated AI skills for your AI workflows. Filter by category, platform, and more.",
     "collectionsTitle": "Curated Collections",
     "collectionsDescription": "Hand-picked skill bundles for common workflows including documentation, Git, code quality, and more.",
     "submitTitle": "Submit a Skill",

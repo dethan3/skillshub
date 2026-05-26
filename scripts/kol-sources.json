@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Simon Willison",
+    "github": "simonw",
+    "twitter": "simonw",
+    "repos": ["simonw/llm"],
+    "note": "Creator of Datasette, prolific AI tool builder and writer",
+    "autoStarred": true
+  },
+  {
+    "name": "Travis Vanderholm",
+    "github": "travisvn",
+    "twitter": "travisvn",
+    "repos": ["travisvn/awesome-claude-skills"],
+    "note": "Maintains the awesome-claude-skills curated list",
+    "autoStarred": false
+  },
+  {
+    "name": "Matt Shumer",
+    "github": "MattShumer",
+    "twitter": "MattShumer_",
+    "repos": [],
+    "note": "AI tools researcher, shares Claude and AI agent tips",
+    "autoStarred": true
+  },
+  {
+    "name": "Anthropic",
+    "github": "anthropics",
+    "twitter": "AnthropicAI",
+    "repos": ["anthropics/skills", "anthropics/anthropic-cookbook"],
+    "note": "Creators of Claude, official skills and cookbook",
+    "autoStarred": false
+  },
+  {
+    "name": "OpenAI",
+    "github": "openai",
+    "twitter": "OpenAI",
+    "repos": ["openai/openai-agents-python"],
+    "note": "Creators of ChatGPT and Codex",
+    "autoStarred": false
+  }
+]

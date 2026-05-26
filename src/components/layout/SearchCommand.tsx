@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FileText, Search, Layers, Tag } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   CommandDialog,
   CommandEmpty,
@@ -19,6 +20,7 @@ interface SearchCommandProps {
 }
 
 export function SearchCommand({ open, onOpenChange }: SearchCommandProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
@@ -56,15 +58,15 @@ export function SearchCommand({ open, onOpenChange }: SearchCommandProps) {
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
       <CommandInput
-        placeholder="Search skills, collections, or tags..."
+        placeholder={t("searchCommand.placeholder")}
         value={search}
         onValueChange={setSearch}
       />
       <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        
+        <CommandEmpty>{t("searchCommand.noResults")}</CommandEmpty>
+
         {filteredSkills.length > 0 && (
-          <CommandGroup heading="Skills">
+          <CommandGroup heading={t("searchCommand.skills")}>
             {filteredSkills.map((skill) => (
               <CommandItem
                 key={skill.id}
@@ -90,7 +92,7 @@ export function SearchCommand({ open, onOpenChange }: SearchCommandProps) {
         {filteredCollections.length > 0 && (
           <>
             <CommandSeparator />
-            <CommandGroup heading="Collections">
+            <CommandGroup heading={t("searchCommand.collections")}>
               {filteredCollections.map((collection) => (
                 <CommandItem
                   key={collection.id}
@@ -106,7 +108,7 @@ export function SearchCommand({ open, onOpenChange }: SearchCommandProps) {
                     </div>
                   </div>
                   <span className="text-xs text-[hsl(var(--muted-foreground))] shrink-0">
-                    {collection.skillIds.length} skills
+                    {collection.skillIds.length} {t("common.skills")}
                   </span>
                 </CommandItem>
               ))}
@@ -115,18 +117,18 @@ export function SearchCommand({ open, onOpenChange }: SearchCommandProps) {
         )}
 
         <CommandSeparator />
-        <CommandGroup heading="Quick Actions">
+        <CommandGroup heading={t("searchCommand.quickActions")}>
           <CommandItem onSelect={() => handleSelect("/library")}>
             <Search className="mr-2 h-4 w-4" />
-            Browse all skills
+            {t("searchCommand.browseAll")}
           </CommandItem>
           <CommandItem onSelect={() => handleSelect("/collections")}>
             <Layers className="mr-2 h-4 w-4" />
-            View collections
+            {t("searchCommand.viewCollections")}
           </CommandItem>
           <CommandItem onSelect={() => handleSelect("/submit")}>
             <Tag className="mr-2 h-4 w-4" />
-            Submit a skill
+            {t("searchCommand.submitSkill")}
           </CommandItem>
         </CommandGroup>
       </CommandList>

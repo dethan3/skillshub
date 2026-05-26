@@ -16,40 +16,52 @@ jobs:
         with:
           template-path: ".github/ISSUE_TEMPLATE/submit-skill.yml"
 
-      - name: Create submission file
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Import skill from repository
+        id: import
         run: |
-          mkdir -p submissions
-          TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          ISSUE_NUMBER=${{ github.event.issue.number }}
+          REPO_URL="${{ steps.issue-parser.outputs.issueparser_repo_url }}"
+          echo "Importing skill from: $REPO_URL"
           
-          cat << 'EOF' > submissions/skill-${ISSUE_NUMBER}-${TIMESTAMP}.json
-          {
-            "issue_number": ${{ github.event.issue.number }},
-            "issue_title": "${{ github.event.issue.title }}",
-            "submitted_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-            "repo_url": "${{ steps.issue-parser.outputs.issueparser_repo_url }}",
-            "skill_name": "${{ steps.issue-parser.outputs.issueparser_skill_name }}",
-            "description": "${{ steps.issue-parser.outputs.issueparser_description }}",
-            "category": "${{ steps.issue-parser.outputs.issueparser_category }}",
-            "platforms": "${{ steps.issue-parser.outputs.issueparser_platforms }}",
-            "tags": "${{ steps.issue-parser.outputs.issueparser_tags }}",
-            "status": "pending"
-          }
-          EOF
+          # Run import script and capture output
+          if pnpm run import-skill "$REPO_URL" 2>&1 | tee import-output.txt; then
+            echo "import_success=true" >> $GITHUB_OUTPUT
+            # Extract skill name from output
+            SKILL_NAME=$(grep "Name:" import-output.txt | head -1 | sed 's/.*Name: //')
+            echo "skill_name=$SKILL_NAME" >> $GITHUB_OUTPUT
+          else
+            echo "import_success=false" >> $GITHUB_OUTPUT
+            echo "Auto-import failed, creating manual review PR"
+          fi
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          title: "[skill] Add ${{ steps.issue-parser.outputs.issueparser_skill_name }}"
+          title: "[skill] Add ${{ steps.import.outputs.skill_name || steps.issue-parser.outputs.issueparser_skill_name }}"
           body: |
             ## New Skill Submission
             
-            **Name:** ${{ steps.issue-parser.outputs.issueparser_skill_name }}
+            **Name:** ${{ steps.import.outputs.skill_name || steps.issue-parser.outputs.issueparser_skill_name }}
             **Repository:** ${{ steps.issue-parser.outputs.issueparser_repo_url }}
             **Category:** ${{ steps.issue-parser.outputs.issueparser_category }}
             **Description:** ${{ steps.issue-parser.outputs.issueparser_description }}
             
+            ### Import Status
+            ${{ steps.import.outputs.import_success == 'true' && '✅ Skill automatically imported from repository' || '⚠️ Manual import required - please review and update skills.ts' }}
+            
             ---
             Closes #${{ github.event.issue.number }}
           branch: skill-submission-${{ github.event.issue.number }}
-          commit-message: "Add skill submission: ${{ steps.issue-parser.outputs.issueparser_skill_name }}"
+          commit-message: "Add skill: ${{ steps.import.outputs.skill_name || steps.issue-parser.outputs.issueparser_skill_name }}"

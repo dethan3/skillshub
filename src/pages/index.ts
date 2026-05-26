@@ -5,3 +5,4 @@ export { Collections } from "./Collections";
 export { CollectionDetail } from "./CollectionDetail";
 export { Submit } from "./Submit";
 export { About } from "./About";
+export { NotFound } from "./NotFound";

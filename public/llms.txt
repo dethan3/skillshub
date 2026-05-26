@@ -19,21 +19,18 @@ Skills are:
 ## Main Sections
 
 ### Skills Library (/library)
-Browse and search 40+ curated AI skills with filtering by:
+Browse and search 30+ curated AI skills with filtering by:
 - Category: Development, Docs, Enterprise, Design, Automation, Data
 - Platform: Claude Code, Claude.ai, Claude API, Codex CLI, ChatGPT
 - Tags and keywords
 
 ### Curated Collections (/collections)
 Hand-picked skill bundles organized by workflow:
-- Documentation Workflow
-- Git & Version Control
-- Code Quality & Security
-- Frontend Development
-- API Development
-- Data Engineering
-- DevOps & Automation
-- Project Management
+- Office Docs Toolkit — PDF, Word, Excel, and PowerPoint
+- Design & Creative — Visual design, generative art, creative coding
+- Styling & Theming — Design systems and brand guidelines
+- Documentation & Writing — Writing, editing, and collaborating
+- Developer Tools — Building, testing, and debugging software
 
 ### Submit Skills (/submit)
 Community members can submit their own skills to share with others.
@@ -55,7 +52,7 @@ Optional fields include: version, author, tags, license
 
 ## Key Features
 
-- Browse & Search: Explore 40+ curated skills with powerful filtering
+- Browse & Search: Explore 30+ curated skills with powerful filtering
 - Curated Collections: Hand-picked skill bundles for common workflows
 - Dark/Light Theme: System-aware theme switching
 - Internationalization: English and Chinese language support

@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import { BASE_URL } from "@/lib/constants";
 
 interface SEOProps {
   title?: string;
@@ -10,7 +11,6 @@ interface SEOProps {
   type?: "website" | "article";
 }
 
-const BASE_URL = "https://agentskills.dev";
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 export function SEO({

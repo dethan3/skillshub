@@ -20,6 +20,7 @@ export function Header({ onOpenSearch }: { onOpenSearch: () => void }) {
   const navItems = [
     { label: t("common.library"), href: "/library" },
     { label: t("common.collections"), href: "/collections" },
+    { label: t("common.authors"), href: "/authors" },
     { label: t("common.submit"), href: "/submit" },
     { label: t("common.about"), href: "/about" },
   ];

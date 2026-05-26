@@ -1,9 +1,12 @@
 import { useParams, Link } from "react-router-dom";
 import { ChevronRight, Layers, FileText, GitBranch, Shield, Palette, Settings, Database, CheckCircle, Code } from "lucide-react";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { SkillCard } from "@/components/SkillCard";
 import { getCollectionById, getSkillsByIds } from "@/data/skills";
+import { SEO } from "@/components/SEO";
+import { BASE_URL } from "@/lib/constants";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FileText,
@@ -19,6 +22,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function CollectionDetail() {
   const { id } = useParams<{ id: string }>();
+  const { t } = useTranslation();
   const collection = useMemo(() => (id ? getCollectionById(id) : undefined), [id]);
   const skills = useMemo(
     () => (collection ? getSkillsByIds(collection.skillIds) : []),
@@ -28,12 +32,12 @@ export function CollectionDetail() {
   if (!collection) {
     return (
       <div className="container mx-auto px-4 md:px-6 py-16 text-center">
-        <h1 className="text-2xl font-bold mb-4">Collection not found</h1>
+        <h1 className="text-2xl font-bold mb-4">{t("collectionDetail.notFound")}</h1>
         <p className="text-[hsl(var(--muted-foreground))] mb-8">
-          The collection you're looking for doesn't exist or has been removed.
+          {t("collectionDetail.notFoundDesc")}
         </p>
         <Button asChild>
-          <Link to="/collections">Browse all collections</Link>
+          <Link to="/collections">{t("collectionDetail.browseAll")}</Link>
         </Button>
       </div>
     );
@@ -43,10 +47,15 @@ export function CollectionDetail() {
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
+      <SEO
+        title={collection.name}
+        description={collection.description}
+        url={`${BASE_URL}/collection/${collection.id}`}
+      />
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-[hsl(var(--muted-foreground))] mb-6">
         <Link to="/collections" className="hover:text-[hsl(var(--foreground))]">
-          Collections
+          {t("common.collections")}
         </Link>
         <ChevronRight className="h-4 w-4" />
         <span className="text-[hsl(var(--foreground))]">{collection.name}</span>
@@ -64,7 +73,7 @@ export function CollectionDetail() {
               {collection.description}
             </p>
             <p className="text-sm text-[hsl(var(--muted-foreground))]">
-              {skills.length} skills in this collection
+              {t("collectionDetail.skillsInCollection", { count: skills.length })}
             </p>
           </div>
         </div>

@@ -1,55 +1,86 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, Code, FileText, Building2, Palette, Zap, Database, Repeat, Share2, Layers } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowRight, Layers, Search } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { SkillCard } from "@/components/SkillCard";
 import { skills, collections } from "@/data/skills";
 
-const featuredSkills = skills.slice(0, 8);
+const featuredSkills = [...skills]
+  .sort((a, b) => (b.popularity?.stars || 0) - (a.popularity?.stars || 0))
+  .slice(0, 8);
+
+const quickTags = ["pdf", "frontend-design", "mcp", "testing", "automation"];
 
 export function Landing() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [heroSearch, setHeroSearch] = useState("");
 
-  const categories = [
-    { name: t("landing.categories.development"), icon: Code, description: t("landing.categories.developmentDesc"), color: "bg-blue-500/10 hover:bg-blue-500/20 border-blue-500/20", key: "Development" },
-    { name: t("landing.categories.docs"), icon: FileText, description: t("landing.categories.docsDesc"), color: "bg-green-500/10 hover:bg-green-500/20 border-green-500/20", key: "Docs" },
-    { name: t("landing.categories.enterprise"), icon: Building2, description: t("landing.categories.enterpriseDesc"), color: "bg-red-500/10 hover:bg-red-500/20 border-red-500/20", key: "Enterprise" },
-    { name: t("landing.categories.design"), icon: Palette, description: t("landing.categories.designDesc"), color: "bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/20", key: "Design" },
-    { name: t("landing.categories.automation"), icon: Zap, description: t("landing.categories.automationDesc"), color: "bg-orange-500/10 hover:bg-orange-500/20 border-orange-500/20", key: "Automation" },
-    { name: t("landing.categories.data"), icon: Database, description: t("landing.categories.dataDesc"), color: "bg-cyan-500/10 hover:bg-cyan-500/20 border-cyan-500/20", key: "Data" },
-  ];
-
-  const principles = [
-    { title: t("landing.openStandard.reusable"), icon: Repeat, description: t("landing.openStandard.reusableDesc") },
-    { title: t("landing.openStandard.shareable"), icon: Share2, description: t("landing.openStandard.shareableDesc") },
-    { title: t("landing.openStandard.composable"), icon: Layers, description: t("landing.openStandard.composableDesc") },
-  ];
+  const handleHeroSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (heroSearch.trim()) {
+      navigate(`/library?q=${encodeURIComponent(heroSearch.trim())}`);
+    }
+  };
 
   return (
     <div className="flex flex-col">
       <SEO />
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
+      <section className="relative py-14 md:py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--muted))]/50 to-transparent" />
         <div className="container mx-auto px-4 md:px-6 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
               {t("landing.hero.title")}
-              <span className="block text-[hsl(var(--muted-foreground))]">{t("landing.hero.subtitle")}</span>
+              <span className="block text-[hsl(var(--muted-foreground))] text-2xl md:text-3xl font-normal mt-1">{t("landing.hero.subtitle")}</span>
             </h1>
-            <p className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] mb-8 max-w-2xl mx-auto">
+            <p className="text-sm md:text-base text-[hsl(var(--muted-foreground))] mb-6 max-w-xl mx-auto">
               {t("landing.hero.description")}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
+
+            {/* Search Bar */}
+            <form onSubmit={handleHeroSearch} className="max-w-lg mx-auto mb-5">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--muted-foreground))]" />
+                <Input
+                  value={heroSearch}
+                  onChange={(e) => setHeroSearch(e.target.value)}
+                  placeholder={t("landing.hero.searchPlaceholder")}
+                  className="pl-10 h-10 text-sm rounded-lg shadow-sm"
+                />
+                <Button type="submit" size="sm" className="absolute right-1.5 top-1/2 -translate-y-1/2 h-7 px-2.5">
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Button>
+              </div>
+            </form>
+
+            {/* Quick Tags */}
+            <div className="flex items-center justify-center gap-1.5 flex-wrap mb-6">
+              <span className="text-xs text-[hsl(var(--muted-foreground))]">{t("landing.hero.quickTags")}</span>
+              {quickTags.map((tag) => (
+                <Link
+                  key={tag}
+                  to={`/library?q=${tag}`}
+                  className="text-xs px-2 py-0.5 rounded-full bg-[hsl(var(--muted))] hover:bg-[hsl(var(--muted))]/80 transition-colors"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex gap-3 justify-center">
+              <Button size="sm" asChild>
                 <Link to="/library">
                   {t("common.browseSkills")}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button size="sm" variant="outline" asChild>
                 <Link to="/submit">{t("common.submitSkill")}</Link>
               </Button>
             </div>
@@ -57,134 +88,108 @@ export function Landing() {
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="py-16 md:py-24">
+      {/* Stats Banner */}
+      <section className="py-5 bg-[hsl(var(--muted))]/30">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">{t("landing.categories.title")}</h2>
-            <p className="text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">
-              {t("landing.categories.description")}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {categories.map((category) => (
-              <Link
-                key={category.key}
-                to={`/library?category=${category.key}`}
-                className={`group p-6 md:p-8 rounded-2xl border transition-all duration-200 ${category.color}`}
-              >
-                <category.icon className="h-8 w-8 mb-4 text-[hsl(var(--foreground))]" />
-                <h3 className="text-xl font-semibold mb-2">{category.name}</h3>
-                <p className="text-sm text-[hsl(var(--muted-foreground))]">
-                  {category.description}
-                </p>
-                <div className="mt-4 text-sm font-medium flex items-center gap-1 text-[hsl(var(--foreground))] opacity-0 group-hover:opacity-100 transition-opacity">
-                  {t("common.explore")} <ArrowRight className="h-4 w-4" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Open Standard Section */}
-      <section className="py-16 md:py-24 bg-[hsl(var(--muted))]/30">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">{t("landing.openStandard.title")}</h2>
-            <p className="text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">
-              {t("landing.openStandard.description")}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {principles.map((principle) => (
-              <Card key={principle.title} className="bg-[hsl(var(--background))]">
-                <CardContent className="p-6 md:p-8 text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[hsl(var(--muted))] mb-4">
-                    <principle.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{principle.title}</h3>
-                  <p className="text-sm text-[hsl(var(--muted-foreground))]">
-                    {principle.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Button variant="outline" asChild>
-              <Link to="/about">{t("common.learnMore")}</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Skills */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-between mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
             <div>
-              <h2 className="text-3xl font-bold mb-2">{t("landing.featured.title")}</h2>
-              <p className="text-[hsl(var(--muted-foreground))]">
+              <div className="text-xl font-bold">{skills.length}</div>
+              <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                {t("landing.stats.skills")}
+              </div>
+            </div>
+            <div>
+              <div className="text-xl font-bold">{collections.length}</div>
+              <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                {t("landing.stats.collections")}
+              </div>
+            </div>
+            <div>
+              <div className="text-xl font-bold">
+                {new Set(skills.flatMap((s) => s.platforms)).size}
+              </div>
+              <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                {t("landing.stats.platforms")}
+              </div>
+            </div>
+            <div>
+              <div className="text-xl font-bold">
+                {new Set(skills.flatMap((s) => s.tags)).size}
+              </div>
+              <div className="text-xs text-[hsl(var(--muted-foreground))]">
+                {t("landing.stats.tags")}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Skills */}
+      <section className="py-10 md:py-14">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold mb-1">{t("landing.featured.title")}</h2>
+              <p className="text-sm text-[hsl(var(--muted-foreground))]">
                 {t("landing.featured.description")}
               </p>
             </div>
-            <Button variant="outline" asChild className="hidden sm:flex">
+            <Button variant="outline" size="sm" asChild className="hidden sm:flex">
               <Link to="/library">
                 {t("common.viewAll")}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {featuredSkills.map((skill) => (
               <SkillCard key={skill.id} skill={skill} />
             ))}
           </div>
-          <div className="mt-8 text-center sm:hidden">
-            <Button variant="outline" asChild>
+          <div className="mt-6 text-center sm:hidden">
+            <Button variant="outline" size="sm" asChild>
               <Link to="/library">
                 {t("common.viewAll")}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Collections Preview */}
-      <section className="py-16 md:py-24 bg-[hsl(var(--muted))]/30">
+      {/* Curated Collections */}
+      <section className="py-10 md:py-14 bg-[hsl(var(--muted))]/30">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-3xl font-bold mb-2">{t("landing.collections.title")}</h2>
-              <p className="text-[hsl(var(--muted-foreground))]">
+              <h2 className="text-xl font-bold mb-1">{t("landing.collections.title")}</h2>
+              <p className="text-sm text-[hsl(var(--muted-foreground))]">
                 {t("landing.collections.description")}
               </p>
             </div>
-            <Button variant="outline" asChild className="hidden sm:flex">
+            <Button variant="outline" size="sm" asChild className="hidden sm:flex">
               <Link to="/collections">
                 {t("common.allCollections")}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {collections.slice(0, 4).map((collection) => (
               <Link
                 key={collection.id}
                 to={`/collection/${collection.id}`}
                 className="group"
               >
-                <Card className="h-full transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
-                  <CardContent className="p-6">
-                    <div className={`w-10 h-10 rounded-lg ${collection.color} flex items-center justify-center mb-4`}>
-                      <Layers className="h-5 w-5 text-white" />
+                <Card className="h-full transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
+                  <CardContent className="p-4">
+                    <div className={`w-8 h-8 rounded-md ${collection.color} flex items-center justify-center mb-3`}>
+                      <Layers className="h-4 w-4 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 group-hover:text-[hsl(var(--primary))] transition-colors">
+                    <h3 className="font-semibold text-sm mb-1 group-hover:text-[hsl(var(--primary))] transition-colors">
                       {collection.name}
                     </h3>
-                    <p className="text-sm text-[hsl(var(--muted-foreground))] mb-4 line-clamp-2">
+                    <p className="text-xs text-[hsl(var(--muted-foreground))] mb-2 line-clamp-2">
                       {collection.description}
                     </p>
                     <span className="text-xs text-[hsl(var(--muted-foreground))]">
@@ -195,11 +200,11 @@ export function Landing() {
               </Link>
             ))}
           </div>
-          <div className="mt-8 text-center sm:hidden">
-            <Button variant="outline" asChild>
+          <div className="mt-6 text-center sm:hidden">
+            <Button variant="outline" size="sm" asChild>
               <Link to="/collections">
                 {t("common.allCollections")}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
           </div>

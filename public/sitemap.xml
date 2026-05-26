@@ -1,85 +1,297 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://skillshub.dev/</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://skillshub.dev/"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://skillshub.dev/?lang=zh"/>
   </url>
-
-  <!-- Skills Library -->
   <url>
     <loc>https://skillshub.dev/library</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Collections -->
   <url>
     <loc>https://skillshub.dev/collections</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Submit -->
   <url>
     <loc>https://skillshub.dev/submit</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- About -->
   <url>
     <loc>https://skillshub.dev/about</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Category Pages -->
   <url>
     <loc>https://skillshub.dev/library?category=Development</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://skillshub.dev/library?category=Docs</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://skillshub.dev/library?category=Enterprise</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://skillshub.dev/library?category=Design</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://skillshub.dev/library?category=Automation</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://skillshub.dev/library?category=Data</loc>
-    <lastmod>2025-12-23</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-
+  <url>
+    <loc>https://skillshub.dev/skill/algorithmic-art</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/awesome-mcp-servers</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/brand-guidelines</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/canvas-design</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/claude-skills-cookbook</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/d3-viz</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/doc-coauthoring</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/docx</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/expo-skills</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/ffuf-skill-for-claude-code</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/frontend-design</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/frontend-slides</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/internal-comms</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/ios-simulator-skill-for-claude-code</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/loki-mode</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/mcp-builder</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/model-context-protocol-servers</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/pdf</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/playwright-skill-for-claude-code</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/pptx</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/release-monitor</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/scientific-agent-skills</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/setup</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/skill-creator</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/slack-gif-creator</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/superpowers</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/superpowers-lab</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/theme-factory</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/trail-of-bits-skills-marketplace</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/web-artifacts-builder</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/web-asset-generator-claude-code-skill</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/webapp-testing</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/skill/xlsx</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/collection/office-docs</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/collection/design-creative</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/collection/styling-theming</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/collection/documentation</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://skillshub.dev/collection/developer-tools</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

@@ -6,6 +6,7 @@
     "library": "Skill 库",
     "submit": "提交",
     "about": "关于",
+    "authors": "作者",
     "search": "搜索",
     "view": "查看",
     "viewAll": "查看全部",
@@ -34,7 +35,9 @@
     "hero": {
       "title": "发现和分享",
       "subtitle": "Agent Skills",
-      "description": "一个精选的可复用 AI Skills 目录，遵循开放的 SKILL.md 标准。为 Claude、ChatGPT 和其他 AI 助手找到完美的 Skills。"
+      "description": "一个精选的可复用 AI Skills 目录，遵循开放的 SKILL.md 标准。为 Claude、ChatGPT 和其他 AI 助手找到完美的 Skills。",
+      "searchPlaceholder": "搜索 Claude、ChatGPT 的 Skills...",
+      "quickTags": "热门："
     },
     "categories": {
       "title": "按类别浏览",
@@ -62,9 +65,33 @@
       "composable": "可组合",
       "composableDesc": "组合多个 Skills 以创建强大的自动化工作流。"
     },
+    "stats": {
+      "skills": "Skills",
+      "collections": "合集",
+      "platforms": "平台",
+      "tags": "标签"
+    },
     "featured": {
-      "title": "精选 Skills",
-      "description": "来自社区的热门和趋势 Skills"
+      "title": "热门 Skills",
+      "description": "按社区星标数排序的热门 Skills"
+    },
+    "quickStart": {
+      "title": "10 秒上手",
+      "description": "两条命令安装任意 Skill",
+      "step1": "克隆官方 Skills 仓库",
+      "step2": "复制 Skill 到你的 skills 目录",
+      "step3": "搞定 — Claude 会自动使用它"
+    },
+    "howItWorks": {
+      "title": "工作原理",
+      "description": "三步提升你的 AI 工作流",
+      "discoverTitle": "发现",
+      "discoverDesc": "浏览 30+ 精选 Skills，或按类别、平台、标签搜索",
+      "installTitle": "安装",
+      "installDesc": "将 Skill 文件夹复制到 ~/.claude/skills/ 或项目的 .claude/skills/",
+      "useTitle": "使用",
+      "useDesc": "Claude 根据上下文自动发现和调用 Skills",
+      "learnMore": "了解更多关于 SKILL.md"
     },
     "collections": {
       "title": "精选合集",
@@ -79,10 +106,17 @@
     "mostPopular": "最受欢迎",
     "recentlyUpdated": "最近更新",
     "alphabetical": "按字母顺序",
+    "trending": "趋势",
     "categories": "类别",
     "platforms": "平台",
     "filters": "筛选",
     "noResults": "未找到符合条件的 Skills",
+    "emptyTitle": "未找到 Skills",
+    "emptyDesc": "请尝试调整搜索或筛选条件",
+    "trySearches": "热门搜索：",
+    "browseByCategory": "或按类别浏览：",
+    "authors": "作者",
+    "kol": "KOL",
     "showingResults": "显示 {{count}} 个 Skill",
     "showingResults_plural": "显示 {{count}} 个 Skills"
   },
@@ -127,6 +161,12 @@
     "skillSubmitted": "Skill 已提交",
     "addedToQueue": "您的 Skill 已添加到审核队列。",
     "redirectedToGitHub": "您将被重定向到 GitHub 完成提交。"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "您要查找的页面不存在。",
+    "message": "您要查找的页面不存在或已被移动。",
+    "goHome": "返回首页"
   },
   "about": {
     "title": "关于 AgentSkills",
@@ -173,7 +213,64 @@
     "license": "许可证",
     "platforms": "平台",
     "tags": "标签",
-    "lastUpdated": "最后更新"
+    "lastUpdated": "最后更新",
+    "installGlobal": "全局安装（推荐）",
+    "installProject": "项目级安装",
+    "installGlobalCmd": "复制到 ~/.claude/skills/",
+    "installProjectCmd": "复制到 .claude/skills/",
+    "autoDiscover": "Claude 会根据上下文自动发现此 Skill",
+    "reportIssue": "反馈",
+    "notFound": "Skill 未找到",
+    "notFoundDesc": "您要查找的 Skill 不存在或已被移除。",
+    "browseAll": "浏览所有 Skills",
+    "details": "详情",
+    "source": "来源",
+    "authors": "作者",
+    "youMightAlsoLike": "你可能还喜欢",
+    "recommendedBy": "推荐者",
+    "commitFrequency": "活跃度",
+    "contributors": "贡献者",
+    "daily": "每日",
+    "weekly": "每周",
+    "monthly": "每月",
+    "inactive": "不活跃"
+  },
+  "searchCommand": {
+    "placeholder": "搜索 Skills、合集或标签...",
+    "noResults": "未找到结果。",
+    "skills": "Skills",
+    "collections": "合集",
+    "quickActions": "快捷操作",
+    "browseAll": "浏览所有 Skills",
+    "viewCollections": "查看合集",
+    "submitSkill": "提交 Skill"
+  },
+  "collectionDetail": {
+    "notFound": "合集未找到",
+    "notFoundDesc": "您要查找的合集不存在或已被移除。",
+    "browseAll": "浏览所有合集",
+    "skillsInCollection": "此合集包含 {{count}} 个 Skills"
+  },
+  "authors": {
+    "title": "作者",
+    "description": "按创建者和维护者浏览 Skills",
+    "searchPlaceholder": "搜索作者...",
+    "sortBy": "排序",
+    "mostSkills": "最多 Skills",
+    "alphabetical": "按字母顺序",
+    "kolOnly": "仅 KOL",
+    "noResults": "未找到作者",
+    "skillsCount": "{{count}} 个 Skills",
+    "kol": "KOL"
+  },
+  "authorDetail": {
+    "notFound": "作者未找到",
+    "notFoundDesc": "此作者不存在或已被移除。",
+    "browseAll": "浏览所有作者",
+    "skillsByAuthor": "{{name}} 的 Skills",
+    "kolNote": "知名：{{note}}",
+    "github": "GitHub",
+    "twitter": "Twitter"
   },
   "skillCard": {
     "view": "查看"
@@ -188,7 +285,7 @@
     "defaultDescription": "一个社区驱动的目录，用于发现、分享和部署遵循开放 SKILL.md 标准的 AI Agent Skills。为 Claude、ChatGPT 和其他 AI 助手找到完美的 Skills。",
     "defaultKeywords": "AI Skills, Agent Skills, SKILL.md, Claude Skills, ChatGPT Skills, AI助手, LLM工具, AI自动化",
     "libraryTitle": "Skill 库",
-    "libraryDescription": "浏览和发现 40+ 个精选 AI Skills，用于您的 AI 工作流。按类别、平台等进行筛选。",
+    "libraryDescription": "浏览和发现 30+ 个精选 AI Skills，用于您的 AI 工作流。按类别、平台等进行筛选。",
     "collectionsTitle": "精选合集",
     "collectionsDescription": "针对常见工作流的精选 Skills 包，包括文档、Git、代码质量等。",
     "submitTitle": "提交 Skill",
