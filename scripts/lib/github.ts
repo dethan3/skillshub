@@ -5,6 +5,29 @@
 const GITHUB_API = "https://api.github.com";
 const USER_AGENT = "SkillsHub-Importer";
 
+export interface GitHubRepository {
+  name: string;
+  owner: { login: string };
+  description: string | null;
+  stargazers_count: number;
+  fork: boolean;
+  license: { spdx_id: string | null } | null;
+}
+
+interface DirectoryEntry {
+  name: string;
+}
+
+interface CodeSearchItem {
+  repository: { owner: { login: string }; name: string };
+  path: string;
+}
+
+interface RepositorySearchItem {
+  owner: { login: string };
+  name: string;
+}
+
 function getHeaders(token?: string): Record<string, string> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github.v3+json",
@@ -45,7 +68,7 @@ export async function fetchRepoInfo(
   owner: string,
   repo: string,
   token?: string
-): Promise<Record<string, any> | null> {
+): Promise<GitHubRepository | null> {
   const url = `${GITHUB_API}/repos/${owner}/${repo}`;
   try {
     const response = await fetch(url, { headers: getHeaders(token) });
@@ -70,7 +93,7 @@ export async function listDirectory(
     if (response.ok) {
       const data = await response.json();
       if (Array.isArray(data)) {
-        return data.map((item: any) => item.name);
+        return (data as DirectoryEntry[]).map((item) => item.name);
       }
     }
   } catch {
@@ -96,7 +119,7 @@ export async function searchCode(
     const response = await fetch(url, { headers: getHeaders(token) });
     if (response.ok) {
       const data = await response.json();
-      const items: SearchResult[] = (data.items || []).map((item: any) => ({
+      const items: SearchResult[] = ((data.items || []) as CodeSearchItem[]).map((item) => ({
         owner: item.repository.owner.login,
         repo: item.repository.name,
         path: item.path,
@@ -125,7 +148,7 @@ export async function searchRepos(
     const response = await fetch(url, { headers: getHeaders(token) });
     if (response.ok) {
       const data = await response.json();
-      const items: SearchResult[] = (data.items || []).map((item: any) => ({
+      const items: SearchResult[] = ((data.items || []) as RepositorySearchItem[]).map((item) => ({
         owner: item.owner.login,
         repo: item.name,
         path: "",
@@ -158,7 +181,7 @@ export async function fetchStarredRepos(
     const response = await fetch(url, { headers: getHeaders(token) });
     if (response.ok) {
       const data = await response.json();
-      return (data || []).map((item: any) => ({
+      return ((data || []) as RepositorySearchItem[]).map((item) => ({
         owner: item.owner.login,
         repo: item.name,
         path: "",
@@ -209,8 +232,8 @@ export async function fetchRepoStats(
       const data = await commitRes.json();
       if (Array.isArray(data) && data.length > 0) {
         // Last 4 weeks of commit activity
-        const recentWeeks = data.slice(-4);
-        const totalCommits = recentWeeks.reduce((sum: number, w: any) => sum + (w.total || 0), 0);
+        const recentWeeks = data.slice(-4) as { total?: number }[];
+        const totalCommits = recentWeeks.reduce((sum, week) => sum + (week.total || 0), 0);
         if (totalCommits >= 20) commitFrequency = "daily";
         else if (totalCommits >= 5) commitFrequency = "weekly";
         else if (totalCommits >= 1) commitFrequency = "monthly";

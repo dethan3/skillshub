@@ -3,12 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": "^24.22.1"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "prebuild": "tsx scripts/generate-sitemap.ts",
     "generate-sitemap": "tsx scripts/generate-sitemap.ts",
     "lint": "eslint .",
+    "test": "tsx --test tests/*.test.ts",
     "preview": "vite preview",
     "import-skill": "tsx scripts/import-skill.ts",
     "sync-skills": "tsx scripts/sync-skills.ts"

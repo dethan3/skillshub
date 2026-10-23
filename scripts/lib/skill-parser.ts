@@ -211,7 +211,7 @@ export function formatSkillAsTS(skill: SkillData): string {
   const escapedSkillMd = skill.skillMd
     .replace(/\\/g, "\\\\")
     .replace(/`/g, "\\`")
-    .replace(/\$/g, "\\$");
+    .replace(/\$\{/g, "\\${");
 
   // Escape description for double-quoted string context
   const escapedDesc = skill.description

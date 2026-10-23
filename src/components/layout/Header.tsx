@@ -3,7 +3,7 @@ import { Moon, Sun, Menu, X, Languages } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/contexts/theme-context";
+import { useTheme } from "@/hooks/use-theme";
 import {
   DropdownMenu,
   DropdownMenuContent,

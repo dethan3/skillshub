@@ -44,8 +44,8 @@ function parseGitHubUrl(
   url: string
 ): { owner: string; repo: string; path?: string } | null {
   const patterns = [
-    /github\.com\/([^\/]+)\/([^\/]+)\/tree\/[^\/]+\/(.+)/,
-    /github\.com\/([^\/]+)\/([^\/]+)\/?$/,
+    /github\.com\/([^/]+)\/([^/]+)\/tree\/[^/]+\/(.+)/,
+    /github\.com\/([^/]+)\/([^/]+)\/?$/,
   ];
 
   for (const pattern of patterns) {
@@ -238,7 +238,7 @@ Options:
 
   // Update skills.ts
   const skillsPath = path.join(__dirname, "../src/data/skills.ts");
-  let skillsContent = fs.readFileSync(skillsPath, "utf-8");
+  const skillsContent = fs.readFileSync(skillsPath, "utf-8");
 
   // Check if skill already exists
   if (skillsContent.includes(`id: "${skill.id}"`)) {
