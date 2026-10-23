@@ -56,6 +56,7 @@ export function Library() {
   );
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "popular");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [rankingTime] = useState(() => Date.now());
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 300);
@@ -107,11 +108,10 @@ export function Library() {
         result.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
         break;
       case "trending": {
-        const now = Date.now();
         const dayMs = 86400000;
         result.sort((a, b) => {
-          const aAge = Math.max(1, (now - new Date(a.updatedAt).getTime()) / dayMs);
-          const bAge = Math.max(1, (now - new Date(b.updatedAt).getTime()) / dayMs);
+          const aAge = Math.max(1, (rankingTime - new Date(a.updatedAt).getTime()) / dayMs);
+          const bAge = Math.max(1, (rankingTime - new Date(b.updatedAt).getTime()) / dayMs);
           const aScore = (a.popularity?.stars || 0) / aAge;
           const bScore = (b.popularity?.stars || 0) / bAge;
           return bScore - aScore;
@@ -127,7 +127,7 @@ export function Library() {
     }
 
     return result;
-  }, [searchQuery, selectedCategories, selectedPlatforms, selectedAuthors, sortBy]);
+  }, [searchQuery, selectedCategories, selectedPlatforms, selectedAuthors, sortBy, rankingTime]);
 
   const toggleCategory = (category: string) => {
     setSelectedCategories((prev) =>
@@ -196,7 +196,7 @@ export function Library() {
 
   const suggestedSearches = ["pdf", "mcp", "testing", "automation", "frontend-design"];
 
-  const FilterContent = () => (
+  const filterContent = (
     <div className="space-y-4">
       <div>
         <h3 className="font-medium text-sm mb-2">{t("library.categories")}</h3>
@@ -358,7 +358,7 @@ export function Library() {
                 <DialogTitle>{t("library.filters")}</DialogTitle>
               </DialogHeader>
               <ScrollArea className="max-h-[60vh]">
-                <FilterContent />
+                {filterContent}
               </ScrollArea>
             </DialogContent>
           </Dialog>
@@ -411,7 +411,7 @@ export function Library() {
         {/* Sidebar Filters (Desktop) */}
         <aside className="hidden lg:block w-56 shrink-0">
           <div className="sticky top-20">
-            <FilterContent />
+            {filterContent}
           </div>
         </aside>
 

@@ -2442,45 +2442,45 @@ STATE_FILE="/tmp/gsd-monitor-last-tag"
 LOG_FILE="/tmp/gsd-monitor.log"
 
 # Initialize with current latest
-echo "v1.25.1" > "\$STATE_FILE"
-rm -f "\$SIGNAL_FILE"
+echo "v1.25.1" > "$STATE_FILE"
+rm -f "$SIGNAL_FILE"
 
 log() {
-  echo "[\$(date '+%Y-%m-%d %H:%M:%S')] \$1" >> "\$LOG_FILE"
-  echo "[\$(date '+%Y-%m-%d %H:%M:%S')] \$1"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
 }
 
-log "Monitor started. Watching \$REPO for releases newer than v1.25.1"
+log "Monitor started. Watching $REPO for releases newer than v1.25.1"
 log "Checking every 15 minutes..."
 
 while true; do
   sleep 900  # 15 minutes
 
-  LAST_KNOWN=\$(cat "\$STATE_FILE" 2>/dev/null)
+  LAST_KNOWN=$(cat "$STATE_FILE" 2>/dev/null)
   
   # Get latest release tag
-  LATEST=\$(gh release list -R "\$REPO" --limit 1 2>/dev/null | awk '{print \$1}')
+  LATEST=$(gh release list -R "$REPO" --limit 1 2>/dev/null | awk '{print $1}')
   
-  if [ -z "\$LATEST" ]; then
+  if [ -z "$LATEST" ]; then
     log "WARNING: Failed to fetch releases (network issue?)"
     continue
   fi
 
-  if [ "\$LATEST" != "\$LAST_KNOWN" ]; then
-    log "NEW RELEASE DETECTED: \$LATEST (was: \$LAST_KNOWN)"
+  if [ "$LATEST" != "$LAST_KNOWN" ]; then
+    log "NEW RELEASE DETECTED: $LATEST (was: $LAST_KNOWN)"
     
     # Fetch release notes
-    RELEASE_BODY=\$(gh release view "\$LATEST" -R "\$REPO" --json tagName,name,body 2>/dev/null)
+    RELEASE_BODY=$(gh release view "$LATEST" -R "$REPO" --json tagName,name,body 2>/dev/null)
     
     # Write signal file for the agent to pick up
-    echo "\$RELEASE_BODY" > "\$SIGNAL_FILE"
-    echo "\$LATEST" > "\$STATE_FILE"
+    echo "$RELEASE_BODY" > "$SIGNAL_FILE"
+    echo "$LATEST" > "$STATE_FILE"
     
-    log "Signal file written to \$SIGNAL_FILE"
+    log "Signal file written to $SIGNAL_FILE"
     # Exit so the agent can process it, then restart
     exit 0
   else
-    log "No new release. Latest is still \$LATEST"
+    log "No new release. Latest is still $LATEST"
   fi
 done
 
@@ -2602,16 +2602,16 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
-PYTHON_VERSION=\$(python3 --version | cut -d' ' -f2)
-PYTHON_MAJOR=\$(echo \$PYTHON_VERSION | cut -d'.' -f1)
-PYTHON_MINOR=\$(echo \$PYTHON_VERSION | cut -d'.' -f2)
+PYTHON_VERSION=$(python3 --version | cut -d' ' -f2)
+PYTHON_MAJOR=$(echo $PYTHON_VERSION | cut -d'.' -f1)
+PYTHON_MINOR=$(echo $PYTHON_VERSION | cut -d'.' -f2)
 
-if [ "\$PYTHON_MAJOR" -lt 3 ] || ([ "\$PYTHON_MAJOR" -eq 3 ] && [ "\$PYTHON_MINOR" -lt 10 ]); then
+if [ "$PYTHON_MAJOR" -lt 3 ] || ([ "$PYTHON_MAJOR" -eq 3 ] && [ "$PYTHON_MINOR" -lt 10 ]); then
     echo -e "\${YELLOW}⚠ Warning: Python 3.10+ required\${NC}"
-    echo "Current version: \$PYTHON_VERSION"
+    echo "Current version: $PYTHON_VERSION"
     exit 1
 else
-    echo -e "\${GREEN}✓\${NC} Python \$PYTHON_VERSION found"
+    echo -e "\${GREEN}✓\${NC} Python $PYTHON_VERSION found"
 fi
 echo ""
 
@@ -2631,7 +2631,7 @@ echo ""
 read -p "Install globally? (y/n) " -n 1 -r
 echo ""
 
-if [[ \$REPLY =~ ^[Yy]\$ ]]; then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Installing skill-seekers..."
 
     # Use python3 -m pip to ensure pip matches the python3 that passed the
@@ -2651,12 +2651,12 @@ if [[ \$REPLY =~ ^[Yy]\$ ]]; then
 
     # Verify installation
     if command -v skill-seekers &> /dev/null; then
-        INSTALLED_VERSION=\$(skill-seekers --version 2>/dev/null || echo "unknown")
+        INSTALLED_VERSION=$(skill-seekers --version 2>/dev/null || echo "unknown")
         echo -e "\${GREEN}✓\${NC} skill-seekers command available"
-        echo "  Version: \$INSTALLED_VERSION"
+        echo "  Version: $INSTALLED_VERSION"
     else
         echo -e "\${YELLOW}⚠\${NC} skill-seekers command not found in PATH"
-        echo "  Add ~/.local/bin to PATH: export PATH=\\"\\\$HOME/.local/bin:\\\$PATH\\""
+        echo "  Add ~/.local/bin to PATH: export PATH=\\"\\$HOME/.local/bin:\\$PATH\\""
     fi
 else
     echo "Installation skipped"
@@ -2672,7 +2672,7 @@ echo "Step 3: Testing MCP server..."
 # Test stdio mode
 echo "  Testing stdio transport..."
 timeout 3 python3 -m skill_seekers.mcp.server_fastmcp 2>/dev/null || {
-    if [ \$? -eq 124 ]; then
+    if [ $? -eq 124 ]; then
         echo -e "  \${GREEN}✓\${NC} Stdio transport working"
     else
         echo -e "  \${YELLOW}⚠\${NC} Stdio test inconclusive, but may still work"
@@ -2684,7 +2684,7 @@ echo "  Testing HTTP transport..."
 if python3 -c "import uvicorn" 2>/dev/null; then
     # Start HTTP server in background
     python3 -m skill_seekers.mcp.server_fastmcp --transport http --port 8765 > /dev/null 2>&1 &
-    HTTP_TEST_PID=\$!
+    HTTP_TEST_PID=$!
     sleep 2
 
     # Test health endpoint
@@ -2697,7 +2697,7 @@ if python3 -c "import uvicorn" 2>/dev/null; then
     fi
 
     # Cleanup
-    kill \$HTTP_TEST_PID 2>/dev/null || true
+    kill $HTTP_TEST_PID 2>/dev/null || true
 else
     echo -e "  \${YELLOW}⚠\${NC} uvicorn not installed (HTTP transport unavailable)"
     echo "  Install with: pip3 install uvicorn"
@@ -3919,8 +3919,8 @@ Unless otherwise stated by the user or existing template
 
 #### Required Format Rules
 - **Years**: Format as text strings (e.g., "2024" not "2,024")
-- **Currency**: Use \$#,##0 format; ALWAYS specify units in headers ("Revenue (\$mm)")
-- **Zeros**: Use number formatting to make all zeros "-", including percentages (e.g., "\$#,##0;(\$#,##0);-")
+- **Currency**: Use $#,##0 format; ALWAYS specify units in headers ("Revenue ($mm)")
+- **Zeros**: Use number formatting to make all zeros "-", including percentages (e.g., "$#,##0;($#,##0);-")
 - **Percentages**: Default to 0.0% format (one decimal)
 - **Multiples**: Format as 0.0x for valuation multiples (EV/EBITDA, P/E)
 - **Negative numbers**: Use parentheses (123) not minus -123
@@ -3930,7 +3930,7 @@ Unless otherwise stated by the user or existing template
 #### Assumptions Placement
 - Place ALL assumptions (growth rates, margins, multiples, etc.) in separate assumption cells
 - Use cell references instead of hardcoded values in formulas
-- Example: Use =B5*(1+\$B\$6) instead of =B5*1.05
+- Example: Use =B5*(1+$B$6) instead of =B5*1.05
 
 #### Formula Error Prevention
 - Verify all cell references are correct
