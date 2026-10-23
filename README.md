@@ -45,8 +45,8 @@ Agent Skills are modular AI capabilities defined using the **SKILL.md** specific
 
 ### Prerequisites
 
-- Node.js 18+
-- pnpm 8+
+- Node.js 24.22.1 or a newer 24.x patch (see `.nvmrc`)
+- pnpm 9.x
 
 ### Installation
 
